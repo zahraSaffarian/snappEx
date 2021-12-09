@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import ProductList from "../component/product/productList";
 import { getListService } from "../service/apiService";
+import Loading from "../component/Loading";
+import ProductList from "../component/product/productList";
 
 function Main() {
   const [list, setList] = useState([]);
@@ -24,7 +25,6 @@ function Main() {
           <div key={item.id}>{item.title}</div>
         ))}
       </div>
-      List...
       <ProductList list={list} />
     </div>
   );
