@@ -3,6 +3,8 @@ import { getListService } from "../service/apiService";
 import Loading from "../component/Loading";
 import ProductList from "../component/product/productList";
 import CategoryList from "../component/category/CategoryList";
+import Header from "../component/layout/Header";
+import FillterHeader from "../component/layout/FillterHeader";
 
 function Main() {
   const [list, setList] = useState([]);
@@ -18,13 +20,18 @@ function Main() {
     getList();
   }, []);
   return (
-    <div className="container">
-      <div>
-        <CategoryList categories={categories} />
+    <>
+      <Header />
+      <FillterHeader />
+
+      <div className="container">
+        <div>
+          <CategoryList categories={categories} />
+        </div>
+        <div></div>
+        <ProductList list={list} />
       </div>
-      <div></div>
-      <ProductList list={list} />
-    </div>
+    </>
   );
 }
 

@@ -7,7 +7,7 @@ $gray-base: #333 !default;
 $gray: #6c757d !default;
 $gray-light: #959cb6 !default;
 $gray-lighten: #e1e1ef !default;
-$gray-text: #444;
+$gray-text: rgb(80, 80, 80);
 
 $brand-success: #278401 !default;
 $brand-info: #80bdff !default;
@@ -17,6 +17,7 @@ $brand-warning: #ff9000;
 
 //** Background color for `<body>`.
 $body-bg: #f1f2f4 !default;
+$default-bg: #fff;
 $loading-color: $brand-success;
 //btn
 $btn-primary: $brand-intense-info;
@@ -26,7 +27,7 @@ $btn-danger: $brand-error;
 $btn-default: $gray-base;
 
 //** Global text color on `<body>`.
-$text-color: $gray-base !default;
+$text-color: $gray-text !default;
 $text-color-dark: #000 !default;
 $txt-hover-color: #000 !default;
 $border-base-color: #ebedf2 !default;

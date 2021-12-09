@@ -1,43 +1,45 @@
-﻿@mixin font-icon-size{
-    &.fa-xs::before{
-        font-size: .75em;
+﻿@mixin font-icon-size {
+    // &.fa-xs::before{
+    //     font-size: .75em;
+    // }
+    // &.fa-sm::before{
+    //     font-size: .875em;
+    // }
+    &.fa-lg::before {
+        font-size: 30px;
     }
-    &.fa-sm::before{
-        font-size: .875em;
-    }
-    &.fa-lg::before{
-        font-size: 1.33em;
-    }
-    &.fa-2x::before{
-        font-size: 2em;
-    }
-    &.fa-3x::before{
-        font-size: 3em;
-    }
-    &.fa-4x::before{
-        font-size:4em ;
-    }
-    &.fa-5x::before{
-        font-size: 5em;
-    }
+    // &.fa-2x::before{
+    //     font-size: 2em;
+    // }
+    // &.fa-3x::before{
+    //     font-size: 3em;
+    // }
+    // &.fa-4x::before{
+    //     font-size:4em ;
+    // }
+    // &.fa-5x::before{
+    //     font-size: 5em;
+    // }
 }
-
 
 /*https://jslegers.github.io/emoji-icon-font/*/
 /*https: //icomoon.io/app/#/select*/
-$url:'../../../fonts/';
+$url: "../../../fonts/";
 @font-face {
-    font-family: 'icomoon';
-    src: url('#{$url}icon/icomoon.eot?n1nji8');
-    src: url('#{$url}icon/icomoon.eot?n1nji8#iefix') format('embedded-opentype'), url('#{$url}icon/icomoon.ttf?n1nji8') format('truetype'), url('#{$url}icon/icomoon.woff?n1nji8') format('woff'), url('#{$url}icon/icomoon.svg?n1nji8#icomoon') format('svg');
+    font-family: "icomoon";
+    src: url("#{$url}icon/icomoon.eot?n1nji8");
+    src: url("#{$url}icon/icomoon.eot?n1nji8#iefix") format("embedded-opentype"),
+        url("#{$url}icon/icomoon.ttf?n1nji8") format("truetype"), url("#{$url}icon/icomoon.woff?n1nji8") format("woff"),
+        url("#{$url}icon/icomoon.svg?n1nji8#icomoon") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
-[class^="icon-"]::before, [class*=" icon-"]::before {
+[class^="icon-"]::before,
+[class*=" icon-"]::before {
     /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'icomoon' !important;
+    font-family: "icomoon" !important;
     speak: never;
     font-style: normal;
     font-weight: normal;
@@ -48,11 +50,10 @@ $url:'../../../fonts/';
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    
 }
-[class^="icon-"], [class*=" icon-"]{
+[class^="icon-"],
+[class*=" icon-"] {
     @include font-icon-size;
-
 }
 /* --------------------------------------------- */
 
