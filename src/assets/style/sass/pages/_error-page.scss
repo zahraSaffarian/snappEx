@@ -1,0 +1,20 @@
+﻿.error-page-wrapper{
+  text-align: center;
+  .error-page{
+    max-width: 300px;
+    max-width: 300px;
+    
+    margin: 0 auto;
+    h4{
+      padding: 5px 0 20px;
+    }
+    .logo{
+      width: 100%;
+      max-width: 150px;
+      height:  150px;
+      margin: 25% auto 5%;
+      background: url('../../../images/logo/logo-horiz.svg') no-repeat center center;
+      background-size: auto 100%;
+    }
+  }
+}

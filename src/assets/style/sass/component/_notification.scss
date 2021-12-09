@@ -1,0 +1,174 @@
+﻿$notifColor: $brand-intense-info;
+$color: $notifColor;
+$boderColor: lighten(invert($notifColor, 40%), 30%);
+$not-footer-padding: 3px 20px;
+$not-footer-height: 21px;
+
+.notification-wrapper {
+  .tab-wrraper {
+    &.notSeen-container {
+      .notification-card{
+        &.renoving {
+          @include animate(fadeOutLeft, 1s);
+        }
+        &.renoved {
+         display: none;
+        }
+      }
+    }
+
+    &.all-container {
+      .notification-card{
+        &.renoving {
+          background: lighten($notifColor, 65%);
+          color: darken($notifColor, 10%)!important;
+          @include transition(all 1s ease-in);
+        }
+        &.renoved {
+          .btn-glass-light{
+            display: none;
+          }
+         
+         }
+      }
+    }
+  }
+
+  .notification-card {
+    margin: 5px 0;
+    background: lighten($notifColor, 65%);
+    color: darken($notifColor, 10%);
+    border-color: $boderColor;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+
+    &.noSee {
+      $contrast: #fff;
+      color: $contrast !important;
+      background: darken($notifColor, 30%);
+      .card-footer {
+        a {
+          background: rgba($contrast, 0.6) !important;
+        }
+      }
+    }
+
+    &.delete-from-list {
+      //  background: red;
+    }
+    .card-body {
+      padding-top: 10px;
+    }
+
+    .card-footer {
+      background: rgba($color, 0.05);
+      border-color: $boderColor;
+      padding: 0;
+
+      a {
+        display: inline-block;
+        background: rgba($notifColor, 0.2);
+        color: darken($notifColor, 30%);
+        padding: $not-footer-padding;
+        line-height: $not-footer-height;
+        float: right;
+        font-size: 95%;
+
+        &:not(:last-child) {
+          border-left: 1px solid $boderColor;
+        }
+
+        &:hover {
+          background: rgba($notifColor, 0.1);
+        }
+
+        @include media-max($container-mobile) {
+          float: none;
+          text-align: center;
+          width: 100%;
+        }
+      }
+
+      .time {
+        padding-left: 20px;
+        padding-top: 5px;
+      }
+    }
+  }
+
+  .time {
+    display: inline-block;
+    line-height: $not-footer-height;
+    font-size: 85%;
+
+    @include media-max($container-mobile) {
+      float: none;
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  .caption {
+    font-size: 90%;
+    color: $gray-text;
+    display: inline-block;
+  }
+}
+
+.notification-show {
+}
+
+.notification-wrapper {
+  &.notification-popup {
+    display: none;
+
+    .notification-card {
+      .card-body {
+        padding-bottom: 10px;
+
+        .card-title {
+          margin-bottom: 0;
+        }
+
+        .content {
+          padding-top: 10px;
+        }
+      }
+    }
+  }
+}
+
+.show-notification {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0 20px;
+
+  * {
+    vertical-align: middle;
+  }
+
+  [class^="icon-"]::before {
+    font-size: 1.5em;
+    vertical-align: middle;
+  }
+
+  .icon-bell {
+    $width: 20px;
+    position: relative;
+
+    .badge {
+      @include position-absolute(-($width * 0.5), -($width * 0.5));
+      width: $width;
+      height: $width;
+      line-height: $width;
+      padding: 0;
+      text-align: center;
+      border-radius: 7px;
+    }
+  }
+
+  .text {
+    flex-grow: 4;
+    text-align: center;
+  }
+}

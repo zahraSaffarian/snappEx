@@ -1,0 +1,447 @@
+//**Mixin placeholder input
+@mixin placeholder {
+  ::-webkit-input-placeholder {
+    @content
+  }
+
+  :-moz-placeholder {
+    @content
+  }
+
+  ::-moz-placeholder {
+    @content
+  }
+
+  :-ms-input-placeholder {
+    @content
+  }
+}
+
+
+@mixin panel-box() {
+  padding: $panel-box-padding;
+  border-radius: $panel-box-border-radius;
+  direction: rtl;
+  box-shadow: $panel-box-shadow;
+  overflow: hidden;
+  border-color:$panel-box-border-color ;
+}
+
+@mixin ellipsis-text($clamp) {
+  display: -webkit-box;
+  -webkit-line-clamp: $clamp;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin title-small-line($color) {
+  position: relative;
+  display: block;
+  margin: 10px 0;
+  text-align: center;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 45px;
+    border-top: 2px solid $color;
+    bottom: -20px;
+    left: 50%;
+    margin-left: -24.5px;
+  }
+}
+
+@mixin date-icone() {
+  color: #838383;
+
+  &::before {
+  // content: '';
+    @extend .icon-clock, :before;
+    font-family: 'icomoon';
+    font-size: 16px;
+    vertical-align: middle;
+    float: right;
+    margin: 0 5px;
+  }
+}
+
+@mixin transition($typ) {
+  -webkit-transition: $typ;
+  -moz-transition: $typ;
+  -ms-transition: $typ;
+  -o-transition: $typ;
+  transition: $typ;
+}
+
+@mixin media-max($screen-size) {
+  @media (max-width: $screen-size) {
+    @content
+  }
+}
+
+@mixin media-min($screen-size) {
+  @media (min-width: $screen-size) {
+    @content
+  }
+}
+
+@mixin scroll($width,$bg-color,$thumb-color) {
+  /* width */
+  &::-webkit-scrollbar {
+    width: $width!important;
+    height: $width!important;
+  }
+  /* Track */
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 7px rgba($bg-color,0.7)!important;
+
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color!important;
+    border-radius: 10px!important;
+    cursor: pointer;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: darken($thumb-color, 5%)!important;
+  }
+}
+
+@mixin card-content {
+  border: 1px solid $article-border-color;
+  border-radius: $article-radius;
+  background-color: #fff;
+  padding: $padding-default;
+  box-shadow: $article-shadow;
+}
+
+@mixin animate($name,$time) { //https://animate.style/
+  animation: $name;
+  animation-duration: $time;
+}
+
+@mixin arrowhead($direction,$color,$width,$font-color) {
+  background: $color;
+  padding: 0 10px;
+  line-height: $width;
+  color: $font-color;
+  display: inline-block;
+  position: relative;
+  &::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* To the left of the tooltip */
+    margin-top: -$width * 0.5;
+    border-width: $width * 0.5;
+    border-style: solid;
+
+    @if $direction == left {
+      border-color: transparent $color transparent transparent;
+    } @else if $direction == right {
+      border-color: transparent transparent transparent $color;
+    }
+  }
+}
+
+@mixin plusMinus($size,$color,$action,$font-size) {
+  position: relative;
+  //width: $size;
+  //height: $size;
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    background-color: $color;
+    transition: transform 0.25s ease-out;
+    border-radius: 20px;
+  }
+
+  /* Vertical line */
+  &:before {
+    top: 0;
+    left: ($size * 0.5);
+    width: $font-size;
+    height: $size;
+    margin-left: -($font-size*0.5);
+  }
+
+  /* horizontal line */
+  &:after {
+    top: ($size * 0.5);
+    left: 0;
+    width: $size;
+    height: $font-size;
+    margin-top: -($font-size*0.5);
+  }
+
+  &#{$action} { /* like :hover */
+    cursor: pointer;
+
+    &:before {
+      transform: rotate(90deg);
+    }
+
+    &:after {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+@mixin ColorSpectrum($colorBase,$className) {
+  @for $i from 1 through 200 {
+    .#{$className}:nth-child(#{$i}) {
+      $color: darken($colorBase, round(percentage($i * 0.005)));
+      background: $color;
+
+      &::after {
+        border-color: transparent transparent transparent $color;
+      }
+
+      &::before {
+        border: 1px solid darken($color, 5%);
+      }
+    }
+  }
+}
+
+@mixin content {
+  font-size: ceil(($font-size-default * 0.90));
+  color: $gray-base;
+  line-height: $line-height-default;
+}
+
+@mixin caption {
+  font-size: $font-size-small;
+  color: lighten($gray-base, 30%);
+}
+
+@mixin colorPalette($bg-color,$hover:false) {
+  background: $bg-color;
+
+  @if (lightness($bg-color)<50%) {
+    color: lighten($bg-color, 90%) !important;
+    @if ($hover) {
+      &:hover {
+        background: darken($bg-color, 10%);
+      }
+    }
+  } @else {
+    color: darken($bg-color, 90%) !important;
+    @if ($hover) {
+      &:hover {
+        background: lighten($bg-color, 10%);
+      }
+    }
+  }
+
+}
+
+@function getColorContrast($color) {
+  @if (lightness($color)>50%) {
+    @return darken($color, 50%)
+  } @else {
+    @return lighten($color, 50%);
+  }
+
+}
+
+@mixin position($top:auto,$right:auto,$botton:auto,$left:auto) {
+  top: $top;
+  right: $right;
+  bottom: $botton;
+  left: $left;
+}
+
+@mixin position-absolute($top:auto,$right:auto,$botton:auto,$left:auto) {
+  @include position($top, $right, $botton, $left);
+  position: absolute;
+}
+
+@mixin disabled-selector {
+  &:disabled, &:disabled:hover, &:disabled:focus, &[disabled], &[disabled]:hover, &[disabled]:focus {
+    @content
+  }
+
+}
+
+@mixin colorChange($name,$fist-color,$last-color,$dlay,$count:1) {
+  animation-name: colorChange#{$name};
+  animation-duration: $dlay;
+  animation-iteration-count: $count;
+  @keyframes colorChange#{$name} {
+    from {
+      background-color: $fist-color;
+    }
+    to {
+      background-color: $last-color;
+    }
+  }
+}
+
+@mixin tooltip-arrow($color,$size,$side) {
+  position: relative;
+  &::after {
+    content: " ";
+    position: absolute;
+    border-width: $size;
+    border-style: solid;
+    
+    
+    @if $side==right {
+      top: 50%;
+      left: 100%; /* To the right of the tooltip */
+      margin-top: - $size;      
+      border-color: transparent transparent transparent $color;
+
+    } @else if $side==left {
+      top: 50%;
+      right: 100%; /* To the left of the tooltip */
+      margin-top: - $size;
+      border-color: transparent $color transparent transparent;
+
+    } @else if $side==top {
+      bottom: 100%;  /* At the top of the tooltip */
+      left: 50%;
+      margin-left: - $size;
+      border-color: transparent transparent $color transparent;
+
+    } @else if $side==bottom {
+      top: 100%; /* At the bottom of the tooltip */
+      left: 50%;
+      margin-left: -  $size ;
+      border-color: $color transparent transparent transparent;
+    }
+    
+  }
+}
+
+@mixin placeholderColor($color,$opacity){
+  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $color;
+    opacity:$opacity ;
+  }
+
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: $color;
+    opacity:$opacity ;
+  }
+
+  &::-ms-input-placeholder { /* Microsoft Edge */
+    color: $color;
+    opacity:$opacity ;
+  }
+}
+
+@mixin toggle($size,$color,$close-class) {
+  width: $size;
+  height: $size;
+  display: block;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  @include transition(700ms ease);
+
+  &:after,
+  &:before {
+    content: "";
+    position: absolute;
+    height: $size * 0.125 ;
+    width: 100%;
+    background: $color;
+    @include transition(700ms ease);
+    border-radius: 40px;
+    top: 50%;
+  }
+
+  &:after {
+    transform: rotate(45deg);
+    right: 0;
+  }
+
+  &:before {
+    transform: rotate(-45deg);
+    left: 0;
+  }
+  &.#{$close-class} {
+    &:after,
+    &:before {
+      width: 60%;
+    }
+    &:before {
+      left: 35%;
+    }
+
+    &:after {
+      right: 35%;
+    }
+  }
+}
+
+@mixin dual-ring($size,$color,$width){
+  display: inline-block;
+  width: $size;
+  height: $size;
+  &:after {
+    content: " ";
+    display: block;
+    width:$size - $width;
+    height: $size - $width;
+    margin: $width +2;
+    border-radius: 50%;
+    border: $width solid $color;
+    border-color: $color transparent $color transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@mixin input-Loading($size,$color,$width){
+  position: relative;
+  &:after {
+    top:0;
+    right:calc( 50% - (#{$size} * 0.5)) ;
+    content: " ";
+    display: inline-block;
+    width:$size - $width;
+    height: $size - $width;
+    margin:0;
+    border-radius: 50%;
+    border: $width solid $color;
+    border-color: $color transparent $color transparent;
+    animation: ring 3s linear infinite;
+  }
+  @keyframes ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    10% {
+      transform: rotate(360deg);
+    }
+    20% {
+      transform: rotate(720deg);
+    }
+    25% {
+      transform: rotate(1440deg);
+    }
+
+    100% {
+      transform: rotate(2880deg);
+    }
+  }
+}

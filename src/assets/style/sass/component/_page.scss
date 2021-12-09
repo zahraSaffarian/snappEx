@@ -1,0 +1,78 @@
+.page-container {
+  &.container-fluid {
+    max-width: $container-large-desktop;
+  }
+  padding: 0 $margin-default;
+  .title {
+    padding-right: $form-padding-x;
+    padding-bottom: 20px;
+  }
+  .form-wrapper-card {
+    border: 1px solid $form-border-color;
+    background: #fff;
+    border-radius: $form-radius;
+    box-shadow: $panel-box-shadow;
+    padding: $form-padding-y $form-padding-x;
+
+    @include media-max($container-tablet) {
+      padding: ($form-padding-y * 0.6) $form-padding-x;
+    }
+    input {
+      @include input-typeable {
+        height: $form-input-size;
+      }
+    }
+    select {
+      height: $form-input-size;
+    }
+    .form-section {
+      border-width: 0;
+      position: relative;
+
+      &:not(.first-section):not(:first-child) {
+        &::after {
+          content: " ";
+          position: absolute;
+          background: $form-border-color;
+          height: 1px;
+          top: 0;
+          right: -$form-padding-x;
+          left: -$form-padding-x;
+        }
+      }
+      .form-section-title {
+        display: none;
+      }
+      .inner-section {
+        $section-color:rgba(mix($brand-intense-info,#000,70%) ,0.6) ;
+        $section-border-color:rgba(mix($brand-intense-info,#000,80%) ,0.4) ;
+        margin-top: $margin-default;
+        .section-title {
+          color: $section-color;
+          font-size: 85%;
+          display: flex;
+          flex-direction: row-reverse;
+          align-items: center;
+          flex-wrap: nowrap;
+          &::before{
+            content: "";
+            border-top: 1px solid $section-border-color;
+            flex-grow: 2;
+          }
+        }
+      }
+    }
+    .action-row {
+      margin: 0 (-$form-padding-x) (-$form-padding-y);
+      padding: $form-padding-y $form-padding-x;
+      background: #fafafa;
+      border-top: 1px solid #f0f0f0;
+      border-radius: 0 0 $form-radius $form-radius;
+      text-align: left;
+      flex-direction: row-reverse;
+      @include media-max($container-tablet) {
+        margin-bottom: -($form-padding-y * 0.6);
+      }
+    }
+  }
+}

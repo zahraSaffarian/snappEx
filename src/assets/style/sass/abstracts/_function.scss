@@ -1,0 +1,18 @@
+﻿
+@function  highlighter($color:#fff,$percent:30%) {
+
+  @if (lightness($color)< 50%) {
+    @return lighten($color, $percent);
+
+  } @else {
+    @return darken($color, $percent);
+  }
+}
+@function getColorlightness($color,$goal) {
+  $defaltNum: lightness($color);
+  @if ($defaltNum > $goal) {
+    @return darken($color, ($defaltNum - $goal));
+  } @else {
+    @return lighten($color, ($goal - $defaltNum));
+  }
+}

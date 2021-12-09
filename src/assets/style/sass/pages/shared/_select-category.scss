@@ -1,0 +1,8 @@
+
+.select-category-container{
+  .modal-body{
+      max-height: 80vh;
+      overflow-y: scroll;
+    @include scroll(10px,$gray-lighten,$brand-intense-info);
+  }
+}

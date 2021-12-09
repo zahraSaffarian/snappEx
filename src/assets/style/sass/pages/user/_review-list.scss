@@ -1,0 +1,76 @@
+.review-card-list {
+  $error-review-color: $brand-error;
+  .card {
+    @include panel-box();
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    margin-bottom: 5px;
+    &.error-review {
+        background-color: getColorlightness($error-review-color, 99%);
+    }
+
+    .title-card {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: $padding-small $padding-default;
+
+      .icon {
+        margin-right: -15px;
+        font-size: 24px;
+      }
+      .text {
+        font-size: 110%;
+      }
+      .time {
+        font-size: 90%;
+      }
+    }
+
+    .list-container {
+      border-radius: $border-radius-medium;
+      padding: 0 0 10px;
+      &.accepted-style {
+        color: getColorlightness($brand-success, 20%);
+        background-color: getColorlightness($brand-success, 96%);
+        .check-list-title {
+          background-color: getColorlightness($brand-success, 85%);
+        }
+      }
+      &.error-style {
+        background-color: getColorlightness($error-review-color, 97%);
+        color: rgba(getColorlightness($error-review-color, 20%), 0.8);
+        .check-list-title {
+          background-color: getColorlightness($error-review-color, 93%);
+        }
+      }
+      .check-list-title {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 90%;
+        margin: $margin-default 0 $margin-small;
+        padding: 5px 10px;
+        border-radius: $border-radius-medium $border-radius-medium 0 0;
+      }
+    }
+    .info-row {
+      line-height: 200%;
+      margin: 0 0 10px;
+      &.import{
+        background-color: getColorlightness($error-review-color, 85%);
+        color: getColorlightness($error-review-color, 20%);
+        margin: 0 -5px 10px;
+        padding: 5px;
+        border-radius: $border-radius-medium;
+      }
+      .caption {
+        font-size: 95%;
+        opacity: 0.8;
+        margin-left: 10px;
+      }
+    }
+  }
+}

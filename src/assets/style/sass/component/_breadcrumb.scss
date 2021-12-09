@@ -1,0 +1,24 @@
+﻿
+.breadcrumb-list {
+    .breadcrumb-wrapper {
+        background-color: $breadcrumb-bg;
+        border-radius: $breadcrumb-radiuse;
+        width: 100%;
+        direction: rtl;
+        padding: 10px $padding-default;
+
+        a {
+            font-size: $font-size-small;
+        }
+
+        .slash {
+            margin: 0 5px;
+        }
+    }
+
+    @media only screen and(max-width: $container-large-mobile) {
+        &.container-main {
+            padding: 0 10px;
+        }
+    }
+}

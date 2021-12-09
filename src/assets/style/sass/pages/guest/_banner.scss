@@ -1,0 +1,258 @@
+$small-size: $container-tablet;
+$Medium-size: $container-large-tablet;
+
+.banner-wrapper {
+    border-radius: 0;
+    &.search-banner{
+       // padding-bottom: 30px;
+       // border-bottom: 1px solid $gray-lighten;
+        margin-bottom: 30px;
+       border:2px solid rgba($banner-bg,0.08);
+      border-radius:$border-radius-default ;
+       // padding: 10px 20px;
+        .text-container{
+            padding: 20px!important;
+            .text-small{
+                color:darken($banner-bg,10%);
+            }
+        }
+    }
+    .gray-section{
+        padding: 20px 40px;
+        border-radius: $border-radius-medium;
+        .banner-container{
+            margin: 0;
+            .text-container{
+                h3 {
+                    margin-bottom: 40px;
+                }
+                h5 {
+                    font-size: 16px;
+                    margin-bottom: 25px;
+                    span{
+                        margin-bottom: 5px;
+                        display: block;
+                    }
+                }
+            }
+            .img-container{
+                text-align: left;
+               img{
+                   width: 350px;
+               }
+            }
+            .btn-success{
+                height: 57px !important;
+            }
+            @include media-max($small-size){
+                    .img-container{
+                        text-align: center;
+                        img{
+                            width: 100%;
+                        }
+                    }
+            }
+        }
+       
+      
+    }
+    &.supplier-section{
+        margin: 60px auto;
+        .text-container{
+            h3 {
+                margin-bottom: 40px;
+            }
+            h5 {
+                font-size: 16px;
+                margin-bottom: 25px;
+            }
+        }
+        .img-container{
+            text-align: left;
+            img{
+                width: 440px;
+            }
+        }
+        .btn-success{
+            height: 57px !important;
+        }
+        @include media-max($small-size){
+            .banner-container{
+                flex-direction:column;
+            }
+        }
+    }
+
+    @include media-max($Medium-size) {
+        padding: 0 30px;
+    }
+
+    .banner-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        h5 {
+            color: darken($gray,10%) ;
+        }
+
+        @include media-min($small-size) {
+            flex-direction: row;
+        }
+
+        @include media-max($small-size) {
+            flex-direction: column-reverse;
+            text-align: center;
+        }
+
+        margin: $margin-small auto;
+        border-radius: $border-radius-medium;
+
+        @for $i from 1 through 6 {
+            h#{$i} {
+                line-height: 150% !important;
+                margin-bottom: calc(#{$margin-default} * (1.5 - (#{$i} * 0.1)));
+                font-size: calc(1em * (2 - (#{$i} * 0.1))) !important;
+
+                @include media-max($Medium-size) {
+                    
+                    font-size: calc(1em * (1.3 - (#{$i} * 0.1))) !important;
+                }
+
+                @include media-max($small-size) {
+                    font-size: calc(1em * (1.5 - (#{$i} * 0.1))) !important;
+                }
+            }
+        }
+
+        .text-container {
+            padding: 0;
+            $btn-width: 120px;
+            @include media-max($small-size){
+                margin-top: 25px;
+            }
+            
+            .search-box-wrapper {
+                align-items: flex-start;
+
+                .search-box {
+                    width: 100%;
+
+                    .form-control {
+                      //  box-shadow: 0 2px 12px 2px rgba(0,0,0,.11);
+                        border:1px solid $banner-bg;
+                        height: 70px;
+                        font-size: 120%;
+                        padding-left: $btn-width;
+                        background: #fff;
+                        color: $gray;
+                        @include placeholderColor(darken($banner-bg,50%), 1);
+                        
+                        &:focus {
+                            outline: 0 !important;
+                            border-color: darken($brand-success,20%);
+                        }
+
+                       
+                    }
+
+                    .input-group {
+                        .input-group-prepend {
+                            .btn {
+                                width: 140px;
+                                display: flex;
+                                justify-content: center;
+                                background-color: $banner-bg;
+
+                                color: #fff;
+                                font-size: 20px;
+                                margin-right: 8px;
+                                font-family: $font-family-base !important;
+
+                                @include media-max($small-size) {
+
+                                    font-size: 14px; 
+                                }
+                                
+                                &:hover{
+                                    background-color: $banner-bg !important;
+                                }
+                                &:focus{
+                                    outline-style: none;
+                                    border: none !important; 
+                                    box-shadow: none;
+                                }
+
+                                &::after {
+                                    right: 0;
+                                    top: 0;
+                                    border: solid transparent;
+                                    content: " ";
+                                    height: 0;
+                                    width: 0;
+                                    position: absolute;
+                                    pointer-events: none;
+                                    border-color: rgba(255, 255, 255, 0);
+                                    border-right-color: #fff;
+                                    border-width: 35px 15px 35px 0;
+                                }
+                            }
+                        }
+                    }
+
+                    @include media-max($small-size) {
+                        $btn-width: 40px;
+
+                        .form-control {
+                            height: $btn-width;
+                            padding-left: $btn-width;
+                            max-width: 100%;
+                        }
+
+                        .input-group {
+                            .input-group-prepend {
+                                .btn {
+                                    width: 90px;
+                                    &::after {
+                                        border-width: 20px 15px 20px 0;
+                                    }
+
+                                    .icon-search {
+                                        font-size: 16px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .list-group {
+                        z-index: $z-index-search-list-item;
+                        box-shadow: 0px 11px 20px rgba(0,0,0,0.6);
+                    }
+                }
+            }
+
+            .btn-success {
+                @include media-min($small-size) {
+                    padding: 0 30px;
+                    font-size: 20px;
+                    height: 70px;
+                }
+            }
+        }
+
+        .img-container {
+            img {
+                width: 100%;
+                margin: 10px 0;
+                //  height: 100%;
+                @include media-max($small-size) {
+                    margin: 0 auto;
+                    max-height: 150px;
+                    width: auto;
+                }
+            }
+        }
+    }
+}
+

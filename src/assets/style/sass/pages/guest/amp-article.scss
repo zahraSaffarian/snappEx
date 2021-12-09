@@ -1,0 +1,560 @@
+@import "../../base/reset";
+@import "../../abstracts/variables";
+@import "../../abstracts/function";
+@import "../../abstracts/flex-mixin";
+
+
+//--------------------mixin--------------------------
+
+@mixin scroll($width,$bg-color,$thumb-color) {
+  /* width */
+  &::-webkit-scrollbar {
+    width: $width!important;
+    height: $width!important;
+  }
+  /* Track */
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 7px rgba($bg-color,0.7)!important;
+
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color!important;
+    border-radius: 10px!important;
+    cursor: pointer;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: darken($thumb-color, 5%)!important;
+  }
+}
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+  $src: null;
+
+  $extmods: ( eot: "?", svg: "#" + str-replace($name, " ", "_") );
+
+  $formats: ( otf: "opentype", ttf: "truetype" );
+
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    font-display: swap;
+    src: $src;
+  }
+}
+@mixin colorPalette($bg-color,$hover:false) {
+  background: $bg-color;
+
+  @if (lightness($bg-color)<50%) {
+    color: lighten($bg-color, 90%) !important;
+    @if ($hover) {
+      &:hover {
+        background: darken($bg-color, 10%);
+      }
+    }
+  } @else {
+    color: darken($bg-color, 90%) !important;
+    @if ($hover) {
+      &:hover {
+        background: lighten($bg-color, 10%);
+      }
+    }
+  }
+
+}
+
+@function getColorContrast($color) {
+  @if (lightness($color)>50%) {
+    @return darken($color, 50%)
+  } @else {
+    @return lighten($color, 50%);
+  }
+
+}
+
+@mixin position($top:auto,$right:auto,$botton:auto,$left:auto) {
+  top: $top;
+  right: $right;
+  bottom: $botton;
+  left: $left;
+}
+
+@mixin position-absolute($top:auto,$right:auto,$botton:auto,$left:auto) {
+  @include position($top, $right, $botton, $left);
+  position: absolute;
+}
+
+@mixin disabled-selector {
+  &:disabled, &:disabled:hover, &:disabled:focus, &[disabled], &[disabled]:hover, &[disabled]:focus {
+    @content
+  }
+
+}
+
+@mixin colorChange($name,$fist-color,$last-color,$dlay,$count:1) {
+  animation-name: colorChange#{$name};
+  animation-duration: $dlay;
+  animation-iteration-count: $count;
+  @keyframes colorChange#{$name} {
+    from {
+      background-color: $fist-color;
+    }
+    to {
+      background-color: $last-color;
+    }
+  }
+}
+
+@mixin tooltip-arrow($color,$size,$side) {
+  position: relative;
+  &::after {
+    content: " ";
+    position: absolute;
+    border-width: $size;
+    border-style: solid;
+
+
+    @if $side==right {
+      top: 50%;
+      left: 100%; /* To the right of the tooltip */
+      margin-top: - $size;
+      border-color: transparent transparent transparent $color;
+
+    } @else if $side==left {
+      top: 50%;
+      right: 100%; /* To the left of the tooltip */
+      margin-top: - $size;
+      border-color: transparent $color transparent transparent;
+
+    } @else if $side==top {
+      bottom: 100%;  /* At the top of the tooltip */
+      left: 50%;
+      margin-left: - $size;
+      border-color: transparent transparent $color transparent;
+
+    } @else if $side==bottom {
+      top: 100%; /* At the bottom of the tooltip */
+      left: 50%;
+      margin-left: -  $size ;
+      border-color: $color transparent transparent transparent;
+    }
+
+  }
+}
+
+@mixin placeholderColor($color,$opacity){
+  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $color;
+    opacity:$opacity ;
+  }
+
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: $color;
+    opacity:$opacity ;
+  }
+
+  &::-ms-input-placeholder { /* Microsoft Edge */
+    color: $color;
+    opacity:$opacity ;
+  }
+}
+
+@mixin panel-box() {
+  padding: $panel-box-padding;
+  border-radius: $panel-box-border-radius;
+  direction: rtl;
+  box-shadow: $panel-box-shadow;
+  overflow: hidden;
+  border-color:$panel-box-border-color ;
+}
+@mixin card-content {
+  border: 1px solid $article-border-color;
+  border-radius: $article-radius;
+  background-color: #fff;
+  padding: $padding-default;
+  box-shadow: $article-shadow;
+}
+@include font-face(IranianSansFa, "/fonts/IranSans/IRANSansWeb(FaNum)/IRANSansWeb(FaNum)", normal);
+@include font-face(IranianSansFaBold, "/fonts/IranSans/IRANSansWeb(FaNum)/IRANSansWeb(FaNum) Bold", 900);
+//--------------layout---------------------
+@import "../../layout/footer";
+@import "../../layout/sub-page";
+@import "../../layout/body";
+//-----------------------------------------------------------------------------------
+body {
+  font-family: $font-family-base !important;
+  font-size: 13px;
+  text-align: right;
+  background-color: $body-bg;
+  color: $text-color;
+  line-height: $line-height-default;
+  overflow-x: hidden;
+  direction: rtl;
+
+  @include scroll(12px,$gray,$gray);
+  * {
+    font-family: $font-family-base;
+  }
+}
+
+.bold {
+  font-family: $font-family-bold-iran-sans;
+}
+
+a {
+  text-decoration: none;
+  color: $txt-hover-color;
+
+  &:hover {
+    text-decoration: none;
+    color: $txt-hover-color;
+  }
+}
+
+i {
+  font-style: italic;
+}
+
+.list-style-disc {
+  li {
+    list-style: disc;
+    list-style-position: inside;
+  }
+}
+
+.overlay-for-header {
+  margin-top: 80px;
+}
+
+.container-main {
+  max-width: $container-large-desktop;
+  margin: auto;
+    padding: 0 10px;
+
+}
+
+//----------------------------------
+$small-size: $container-tablet;
+$small-mobile-size: $container-mobile;
+
+nav {
+  &.navbar {
+    height: $nav-height;
+    background-color: #fff;
+    border-bottom: 1px solid #ecf2f8;
+    width: 100%;
+    direction: rtl;
+    box-shadow: 0 -6px 24px 7px rgba(0, 0, 0, .06);
+    position: fixed;
+    top: 0;
+    z-index: $z-index-navbar;
+
+
+    .navbar-brand {
+      width: 120px;
+      height: calc(#{$nav-height} - 15px) !important;
+      margin-left: 50px;
+      margin-top: 10px;
+     // background: url("#{$img-url}logo/logo-horiz.svg") no-repeat center center;
+      background-size: 100% auto;
+      position: relative;
+      z-index: $z-index-navbar-brand;
+    }
+
+    .navbar-nav {
+      &.guest-navbar {
+        width: 145px;
+      }
+
+      .nav-item {
+        margin-left: 15px;
+
+        a {
+          color: #000;
+        }
+      }
+    }
+
+    .left-nav {
+      .btn {
+        &.btn-success {
+          padding-left: 28px;
+          padding-right: 28px;
+          margin-left: 15px;
+        }
+      }
+
+      a {
+        &.btn-outline-success {
+          display: inline-block;
+          line-height: $btn-height;
+        }
+      }
+
+      .collapse {
+        display: block !important;
+      }
+
+      .navbar-nav {
+        flex-direction: row !important;
+
+        .nav-item {
+          margin-left: 0;
+
+          .nav-link {
+            position: relative;
+            padding-right: 20px;
+            padding-left: 20px;
+            cursor: pointer;
+
+            &::after {
+              content: "";
+              position: absolute;
+              top: 8px;
+              bottom: 8px;
+              width: 1px;
+              background-color: #ddd;
+              right: 0;
+            }
+          }
+
+          &:first-child {
+            .nav-link {
+              &::after {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+//-------------------------------------
+
+$line-height: 200%;
+$line-height-h: 140%;
+$article-small-size:$container-sm;
+%text-article {
+  ul {
+    margin-bottom: 1em;
+  }
+
+  .link {
+    background: #eaeaea;
+    border-radius: $border-radius-base;
+    padding: $padding-small;
+  }
+
+  @for $i from 1 through 6 {
+    h#{$i} {
+      font-size: calc(1em * (1.8 - (#{$i} * 0.1)));
+      font-family: $font-family-base !important;
+      margin: calc(#{$margin-default} * (1.5 - (#{$i} * 0.1))) 0 calc(#{$margin-default} * (1 - (#{$i} * 0.1)));
+      font-weight: normal;
+      *{
+        font-size: inherit !important;
+      }
+    }
+  }
+
+  * {
+    font-family: $font-family-base !important;
+  }
+}
+
+.article-select-content {
+  @extend %text-article;
+  min-height: 400px;
+  @include card-content;
+  direction: rtl;
+  padding: 0px 10px 30px !important;
+  margin-bottom: 30px;
+  line-height: $line-height;
+
+
+  strong {
+    font-weight: normal;
+    font-family: $font-family-bold-iran-sans;
+  }
+
+  button {
+    padding: 6px;
+    border: 1px solid $border-base-color;
+    margin: 20px auto;
+
+    &:focus {
+      outline-style: none;
+    }
+  }
+
+  video {
+    margin: 20px auto;
+  }
+
+  .article-selected-title {
+      padding: 10px 0;
+
+    
+    .article-social-act {
+      .vertical-line {
+        height: 22px;
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        span {
+          color: $gray-light;
+          font-size: $font-size-x-small;
+          margin-left: 8px;
+        }
+
+        img {
+          width: 22px;
+        }
+      }
+    }
+  }
+  .article-brief{
+    $color:$color-success;
+    padding: $padding-small;
+    font-size: 110%;
+    background:getColorlightness($color,98%) ;
+    border-radius: $border-radius-base;
+    border-right: ($border-radius-base + 1) solid getColorlightness($color,30%) ;
+    color: getColorlightness($color,30%) ;
+    margin-bottom: 30px;
+  }
+  .article-post-info {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+
+      margin-top: 0px;
+
+    .author{
+      color: #838383;
+      font-size: $font-size-small;
+      font-family: $font-family-bold-iran-sans !important;
+    }
+    .article-timer {
+      position: relative;
+      display: flex;
+      flex-direction: row-reverse;
+      flex-wrap: nowrap;
+      align-items: flex-start;
+      amp-img{
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+      }
+      span {
+        @extend .author;
+      }
+ 
+      img {
+        width: 18px;
+        vertical-align: middle;
+        max-width: 18px;
+        right: 0;
+        left: auto;
+        top: auto;
+        bottom: 0;
+        min-width: 18px;
+        min-height: 18px;
+      }
+    }
+
+    .article-date {
+      position: relative;
+      font-size: 13px;
+      padding: 0;
+ //     @include date-icone();
+      
+
+    }
+  }
+.article-text{
+  img {
+    margin: auto;
+    display: block;
+    width: 100%;
+    margin-top: 25px;
+    border-radius: $border-radius-base;
+
+    &.not-show {
+      display: none;
+    }
+  }
+}
+
+  .article-detail-section {
+    margin-top: 25px;
+
+    p {
+      font-size: $font-size-base;
+      font-family: $font-family-iran-sans !important;
+      line-height: $article-line-height;
+
+      span {
+        font-size: $font-size-base;
+        font-family: $font-family-iran-sans !important;
+      }
+    }
+
+    a {
+      padding: 0 10px;
+      @extend .link;
+    }
+
+    img {
+      margin: auto;
+      display: block;
+      margin-top: 25px;
+      margin-bottom: 25px;
+      border-radius: $border-radius-base;
+    }
+
+    li {
+      list-style-type: circle;
+      list-style: inside;
+    }
+
+    button.accordion {
+      width: 100%;
+      margin: $padding-small 0;
+    }
+
+    $htags: $font-size-h1, $font-size-h2, $font-size-h3, $font-size-h4, $font-size-h5, $font-size-h6;
+
+    @for $i from 1 through length($htags) {
+      h#{$i} {
+        display: inline-block;
+      }
+    }
+  }
+  padding: 0 10px;
+    .article-detail-section {
+
+
+      img {
+        width: 100% !important;
+      }
+    }
+}

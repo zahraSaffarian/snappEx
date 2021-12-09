@@ -1,0 +1,255 @@
+﻿$small-size: $container-large-mobile;
+@mixin color-bg($color) {
+  background: rgba($color, 0.05);
+  color: darken($color, 10%);
+  border-color: rgba($color, 0.3) !important;
+  label {
+    color: desaturate($color, 80%);
+  }
+}
+
+.profile-row {
+  $color: $brand-warning;
+  justify-content: center;
+  display: flex;
+
+  .profile {
+    margin-bottom: 20px;
+    border: 0;
+    color: $gray;
+    box-shadow: 0 0 4px 0 $gray;
+
+    &.warning {
+      $fn-color:#000;
+      box-shadow:-4px 7px 15px 0px rgba(0,0,0,0.5);
+      background: #77daff;
+
+      .container{
+       display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: stretch;
+        color: $fn-color;
+        .show-img{
+          background: url('../../../../images/graphics/start.svg') no-repeat center center;
+          background-size: contain;
+        }
+        .info-container{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+         
+          .btn{
+            font-size: 17px;
+            border: 1px solid #c72226;
+            height: 31px;
+            direction: rtl;
+            border-radius: 20px;
+            padding: 20px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: #e73b40;
+            color: #fff;
+            box-shadow: -1px 3px 11px #6b0003;
+            text-shadow: $textshadow-attention;
+          }
+        }
+      }
+    }
+
+    .card-container {
+      display: flex;
+      flex-flow: row;
+      @include media-max($small-size) {
+        flex-flow: column;
+      }
+    }
+
+    .warning-gray {
+      display: flex;
+      align-items: stretch;
+
+      .img {
+        background: url('../../../../images/noInfo.svg') no-repeat center center;
+        background-size: contain;
+        min-height: 100px;
+        
+      }
+
+      h4 {
+        padding: 30px 0;
+        display: inline-block;
+        @include media-max($small-size) {
+          font-size: 14px;
+        }
+      }
+
+      .edit-emphasis {
+        $color: $brand-warning;
+        background: desaturate($color, 30%);
+        border: 1px solid desaturate($color, 35%);
+        color: #fff;
+        margin: 20px 0 20px;
+        display: inline-block;
+        padding: 7px 20px;
+        border-radius: 20px;
+        text-align: center;
+        min-width: 200px;
+
+        &:hover {
+          background: desaturate($color, 40%);
+          border: 1px solid desaturate($color, 45%);
+        }
+
+        @include media-max($small-size) {
+          width: 100%;
+        }
+      }
+    }
+
+    .img-col {
+      background: #f5f5f5;
+      flex-grow: 3;
+      text-align: center;
+      align-items: stretch;
+      display: flex;
+      .img-container {
+        justify-content: center;
+        padding: 0;
+        align-items: stretch;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction:column;
+        .img {
+          background: no-repeat center center;
+          background-size: cover;
+          height: 100%;
+        }
+      }
+      @include media-max($small-size) {
+        background: 0;
+        border-left: 0;
+        .img-container{
+          flex-direction:row;
+        }
+       
+        
+        .img {
+          width: 100px;
+          height: 100px !important;
+          margin: 5px;
+          border-radius: 50%;
+        }
+
+      }
+    }
+
+    .profile-container {
+      flex-grow: 4;
+      @include media-max($small-size) {
+        text-align: center;
+      }
+
+      .form-info-row {
+        margin-top: 20px;
+        align-self: end;
+      }
+
+      .name {
+        font-size: 18px;
+        margin-bottom: 20px;
+        @include media-max($small-size) {
+          font-size: 13px;
+          margin-bottom: 5px;
+        }
+      }
+
+      .charge {
+        .broke {
+          color: $brand-error;
+        }
+
+        .wealthy {
+          color: $brand-success;
+        }
+
+        .poor {
+          color: $brand-warning;
+        }
+      }
+    }
+
+    .link-col {
+      text-align: center;
+      flex-grow: 2;
+
+      .status {
+        height: 100%;
+        border-right: 1px dashed $gray-lighten;
+        padding: $padding-default;
+        @include media-max($small-size) {
+          text-align: center;
+          border-right-width: 0;
+          border-top: 1px dashed $gray-lighten;
+        }
+
+        .form-info-row {
+          margin-bottom: 20px;
+        }
+      }
+
+      a {
+        align-self: end;
+        $color: $brand-info;
+        border: 1px solid darken($color, 10%);
+        display: inline-block;
+        padding: 3px $padding-default;
+        border-radius: $border-radius-xlarge;
+        color: #fff;
+        background: $color;
+        font-size: 95%;
+        &:hover{
+          background: darken($color, 10%);
+        }
+      }
+    }
+
+    .form-info-row {
+
+      label {
+        display: inline-block;
+        font-size: 90%;
+      }
+
+      .form-content {
+        display: inline-block;
+      }
+    }
+
+    .status {
+      &.Pending {
+        @include color-bg($brand-warning);
+      }
+
+      &.Verified {
+        @include color-bg($brand-success);
+      }
+    }
+
+  }
+}
+
+.canvas-container {
+  overflow-x: auto;
+ text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  .canvas{
+    max-height: 400px;
+    max-width: 100%;
+  }
+}

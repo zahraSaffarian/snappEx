@@ -1,0 +1,160 @@
+
+%dp-width {
+  width: 100%;
+  max-width: $dp-width;
+}
+%cel-obj{
+  width: $dp-cell-width;
+  height: $dp-cell-width;
+  line-height: $dp-cell-width;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+}
+
+%dp-cell {
+  width: $dp-cell-width;
+  line-height: $dp-cell-width;
+  margin:2px;
+  text-align: center;
+  font-size: 13px;
+}
+
+%dp-btn-footer{
+  padding: 3px $padding-default;
+  border-radius: $border-radius-base;
+  margin-bottom: 10px;
+  cursor: pointer;
+  line-height: 23px;
+}
+
+
+.datepicker-input-container {
+  position: relative;
+}
+
+.datepicker-container {
+  position: absolute;
+  @extend %dp-width;
+
+
+  &.pwt-hide {
+    display: none;
+  }
+
+  .datepicker-plot-area {
+    box-shadow: $shadow-base;
+    box-sizing: border-box;
+    overflow: hidden;
+    min-height: 70px;
+    display: block;
+    padding: 0;
+    position: absolute;
+    font: 12px $font-family-base;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    @extend %dp-width;
+
+    &.datepicker-gregorian{
+     *{font-family: tahoma!important;} 
+    }
+    .datepicker-navigator {
+      background: $dpbg;
+      padding: 3px 0;
+      display: flex;
+      @extend %flex-center-space-around;
+
+      .pwt-btn-next,.pwt-btn-prev {
+        @extend %cel-obj;
+        &:hover{
+          background: rgba(255,255,255,0.5);
+        }
+      }
+
+      .pwt-btn-next {
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.02);
+      }
+
+      .pwt-btn-prev {
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.02);
+      }
+    }
+
+    .datepicker-day-view {
+
+      .month-grid-box {
+        margin: 0 0 8px;
+
+        .header {
+          .header-row {
+            background: $dpbg;
+            @extend %flex-center-space-around;
+
+            .header-row-cell {
+              color: $dpFontColor;
+              @extend %dp-cell;
+            }
+          }
+        }
+      }
+
+      .table-days {
+        width: 100%;
+        td {
+          @extend %dp-cell;
+          & > span{
+          @extend %cel-obj;
+            &:hover{
+              background-color: $dpbg;
+              color: $dpFontColor;
+            }
+          }
+          &.selected {
+            span {
+              background-color: getColorlightness($brand-intense-info, 50%);
+              color: #fff;
+              border: none;
+              text-shadow: none;
+            }
+          }
+
+          &.today {
+            span {
+              background-color:getColorlightness($gray-lighten, 90%) ;
+              color: getColorlightness($gray-lighten, 30%) ;
+            }
+          }
+
+          span {
+            color: $dpFontColor;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+    .toolbox{
+      @extend %flex-center-space-around;
+      .pwt-btn-today{
+        $color:$brand-intense-info;
+        @extend %dp-btn-footer;
+        background: $color;
+        color:#fff;
+        &:hover{
+          background:lighten($color,10%) ;
+        }
+      }
+      .pwt-btn-calendar{
+        $color:$gray-lighten;
+        @extend %dp-btn-footer;
+        background: $color;
+        color:#555;
+        &:hover{
+          background:darken($color,5%) ;
+        }
+      }
+    }
+  }
+}
+

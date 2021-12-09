@@ -1,0 +1,88 @@
+.tags-input-wrapper{
+  .form-content{
+    display: flex;
+    flex-direction: row;
+    .input{
+      flex-grow: 2;
+    }
+    .btn{
+      width: 100px!important;
+      justify-content: center;
+      border-radius: 20px 0 0 20px;
+      height: 100%;
+    }
+  }
+}
+.tags-wrapper {
+  width: 100%;
+  text-align: right;
+  $height: 20px;
+  padding-top: $padding-default;
+  $colorBase: $brand-success;
+  &.tag-edit-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  .tag {
+    $color: $colorBase;
+    display: inline-block;
+    padding: 0 ($height * 0.66);
+    margin: 0 ($height* 0.5) 0 2px;
+    background: $color;
+    position: relative;
+    line-height: $height;
+    min-height: $height;
+    color: #fff;
+    border-radius: 3px 0 0 3px;
+    cursor: default;
+    margin-bottom: 8px;
+    font-size: 10px;
+    vertical-align: middle;
+
+    &::after {
+      content: " ";
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      margin-top: -($height * 0.5);
+      border-width: ($height * 0.5);
+      border-style: solid;
+      border-color: transparent transparent transparent $color;
+    }
+
+    &::before {
+      content: " ";
+      $width: 5px;
+      width: $width;
+      height: $width;
+      background: #fff;
+      border: 1px solid darken($color, 5%);
+      border-radius: 50%;
+      top: calc(50% - (#{$width} / 2));
+      right: -($height * 0.125);
+      position: absolute;
+      z-index: $z-index-base;
+    }
+    &.tag-edit{
+      display: flex;
+      -ms-flex-direction: row;
+      padding-left: 0;
+      justify-content: space-between;
+      
+      button{
+        font-size: 19px;
+        background: rgba(0,0,0,0.1);
+        line-height: 100%;
+        padding: 0;
+        margin-right: 3px;
+        &:hover{
+          background: rgba(0,0,0,0.3);
+        }
+      }
+    }
+  }
+
+  @include ColorSpectrum($colorBase, tag);
+}

@@ -1,0 +1,66 @@
+//-------------------h1 h2 h3 h4 h5 h6--------------------------
+
+$htags: $font-size-h1, $font-size-h2, $font-size-h3, $font-size-h4, $font-size-h5, $font-size-h6;
+
+@for $i from 1 through length($htags) {
+  h#{$i} {
+    font-size: nth($htags, $i);
+    font-family: $font-family-head;
+    line-height: 1.2em;
+    font-weight: normal;
+    &.not-bold {
+      font-family: $font-family-base !important;
+      
+    }
+    
+    &.style-h{
+      
+      line-height:  200% ;
+      margin: calc(#{$margin-default} *  (1.5 - (#{$i} * 0.1)))  0  calc(#{$margin-default} *  (1.2 - (#{$i} * 0.1)));
+    }
+  }
+}
+
+//--------danger-text---success-text---warning-text---info-text----primary-text----dark-text--lighten-text--------------------------------------
+$colors: ("danger": $brand-error, "success": $brand-success, "warning": $brand-warning, "info": $brand-info,"primary":$brand-intense-info, "dark": $gray-text, "lighten": $gray-lighten,"brand": $brand-success);
+
+@each $name, $color in $colors {
+  .#{$name}-text {
+    color: $color !important;
+
+    &::before {
+      color: $color !important;
+    }
+  }
+}
+//--------danger-bg---success-bg---warning-bg---info-bg----primary-bg--dark-bg--lighten-bg--------------------------------------
+$colors: ("danger": $brand-error, "success": $brand-success, "warning": $brand-warning, "info": $brand-info,"primary":$brand-intense-info, "dark": $gray-text, "lighten": $gray-lighten);
+
+@each $name, $color in $colors {
+  .#{$name}-bg {
+    background: getColorlightness($color,50%) !important;
+    color:#fff;
+  }
+}
+//------------------------------------------------------------
+//--------danger-bg-color---success-bg-color---warning-bg-color---info-bg-color----primary-bg-color --dark-bg-color --lighten-bg-color  --------------------------------------
+$colors: ("danger": $brand-error, "success": $brand-success, "warning": $brand-warning, "info": $brand-info,"primary":$brand-intense-info, "dark": $gray-text, "lighten": $gray-lighten);
+
+@each $name, $color in $colors {
+  .#{$name}-bg-color {
+    background: getColorlightness($color,90%) !important;
+    color:getColorlightness($color,40%) !important;
+  }
+}
+
+//------------------------------------------------------------
+
+
+.import-text{
+  border-radius:20px ;
+  padding:3px  $padding-default ;
+}
+
+.text-larg{
+  font-size: 120%;
+}

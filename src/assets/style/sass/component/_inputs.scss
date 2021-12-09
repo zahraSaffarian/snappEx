@@ -1,0 +1,243 @@
+﻿.input-group {
+  .input-group-prepend {
+    height: $form-input-size;
+
+    > * {
+      height: 100%;
+    }
+  }
+}
+
+@mixin input-typeable {
+  $inputTypes: text, password, tel, email, number;
+
+  @each $inputType in $inputTypes {
+    &[type=#{$inputType} ] {
+      @content;
+    }
+  }
+}
+
+@mixin base-input {
+  border: $input-border;
+  border-radius: $input-border-radius;
+  text-align: right;
+  width: 100%;
+  height: $input-height;
+  padding: 0 5px;
+  &:focus {
+    outline: 1px $input-focus-outline auto;
+  }
+  &.english-font {
+    text-align: left;
+  }
+  &.inValid {
+    background: lighten($brand-error, 40%);
+    outline: 1px lighten($brand-error, 20%) auto !important;
+  }
+
+
+}
+
+input {
+
+  @include input-typeable {
+    @include base-input;
+    height: $input-height;
+    &.md-height {
+      height: $form-input-size;
+    }
+    @include placeholderColor($gray-text, 0.7);
+  }
+
+  &[type=file] { //file
+    @include base-input;
+    $width: 80px;
+    $height: $input-height;
+    text-align: right;
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+
+    &::-webkit-file-upload-button {
+      visibility: hidden;
+    }
+
+    &::before {
+      $color: $gray;
+
+      content: 'انتخاب فایل';
+      display: inline-block;
+      background: $color;
+      color: #fff;
+      border: 1px solid darken($color, 10%);
+      border-radius: $input-border-radius;
+      outline: none;
+      white-space: nowrap;
+      -webkit-user-select: none;
+      cursor: pointer;
+      font-size: 11px;
+      position: absolute;
+      right: 0;
+      width: $width;
+      height: $height - 2px;
+      text-align: center;
+      line-height: $height - 2px;
+
+    }
+
+    &:hover::before {
+      border-color: black;
+    }
+
+    &:active::before {
+      background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+    }
+    &:disabled{
+      background-color: #ccc;
+    }
+
+    &.uploading{
+      cursor: progress;
+      @include input-Loading(30px,$loading-color,4px);
+    }
+  }
+
+  &[type=radio] { //radio
+    vertical-align: middle;
+
+    & ~ label {
+      cursor: pointer;
+    }
+  }
+
+  &[type=number].without-arrows {
+    -moz-appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+}
+
+textarea {
+  @include base-input;
+  line-height: $input-height;
+  white-space: break-spaces;
+  height: $input-height*2;
+  line-height: $input-height* 0.7;
+  @include scroll(5px, $gray-lighten, $gray-light);
+  overflow-x: hidden;
+
+  &.md-height {
+    height: $input-height*5;
+  }
+
+  &.lg-height {
+    height: $input-height*10;
+  }
+}
+
+select {
+  @include base-input;
+}
+
+//---------------------------------------------Checkbox-----------------------------------------
+@mixin check($size) {
+  $check-color: $color-success;
+  .check {
+    display: block;
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 2px;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    width: $size !important;
+    height: $size !important;
+    vertical-align: middle;
+
+
+    input {
+      position: absolute;
+      opacity: 0;
+      
+      height: 0;
+      width: 0;
+
+      & ~ .checkmark {
+        @include position-absolute(0, 0, auto, auto);
+        height: $size;
+        width: $size;
+        background-color: $gray-lighten;
+        display: flex;
+        align-items: flex-end;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+
+        &:after {
+          content: "";
+          $iconSize: 10px;          
+          display: none;
+          background: rgba(0, 0, 0, 0);
+          font-weight: bold;
+        }
+      }
+
+      &:checked {
+        & ~ .checkmark {
+          background-color: rgba($check-color, 0.1);
+          color: $check-color ;
+          &:after {
+            content: "\2713";
+            display: block;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      input {
+        &:not([disabled]), &:not(:disabled) {
+        
+          & ~ .checkmark {
+            cursor: pointer;
+            background-color: #ccc;
+          }
+        }
+      }
+    }
+  }
+
+}
+@mixin uncheck() {
+  $check-color: $attention;
+  .check {
+    input {
+      & ~ .checkmark {
+        background-color: rgba($check-color, 0.1);
+        color: $check-color;
+        &:after {
+          content: "✖";
+          $iconSize: 10px;          
+          display: block;
+        }
+      }      
+    }
+  }
+
+}
+
+//-----------------------------------------
+
+.check-big{
+  width: 18px;
+  height: 18px;
+}

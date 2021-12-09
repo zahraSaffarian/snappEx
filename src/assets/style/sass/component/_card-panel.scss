@@ -1,0 +1,101 @@
+﻿ $card-list-item-margin-bottom:5px;
+
+.card-panel {
+  @include card-content;
+  border-radius: $border-radius-base;
+  padding: $padding-default;
+  margin: 0 0 8px;
+
+  .title {
+    padding: 10px 20px 40px;
+    display: inline-block;
+    @include media-max($container-tablet) {
+      padding: 10px 0 40px;
+    }
+
+    h3 {
+      font-family: $font-family-bold-iran-sans;
+      font-size: $font-size-default;
+    }
+  }
+
+  .content {
+
+  }
+}
+
+.card-list {
+
+
+  .card-list-item {
+    @include panel-box();
+    color: $gray-text;
+    margin-bottom: $card-list-item-margin-bottom;
+
+    .card-header {
+      margin: (-$panel-box-padding) (-$panel-box-padding) 0 (-$panel-box-padding);
+      //border-bottom: 1px solid $gray-lighten;
+      display: flex;
+      flex-flow: row wrap
+    }
+
+    .card-content {
+      padding: 15px 10px;
+    }
+
+    .list-col {
+      font-size: ceil(($font-size-small * 0.85));
+      line-height: 30px;
+
+      span {
+        font-size: $font-size-small;
+        color: $gray;
+        font-family: $font-family-bold-iran-sans;
+        padding-right: 10px;
+        vertical-align: middle;
+        display: inline-block;
+
+        &.number {
+          font-size: 150%;
+        }
+      }
+    }
+
+  }
+
+  .add-btn-card-container {
+    margin-bottom: $card-list-item-margin-bottom;
+  }
+}
+
+.card-panel-none-color {
+
+  margin: 8px 0 15px;
+}
+
+%add-btn-card-base {
+  border: 2px dashed #aaa;
+  outline: 0;
+}
+
+.add-btn-card {
+  width: 100%;
+  height: 100%;
+  color: #999;
+  background: #fff;
+
+  @extend %add-btn-card-base;
+
+  &:hover {
+    background: #f5f5f5;
+    @extend %add-btn-card-base;
+  }
+
+  &:active {
+    @extend %add-btn-card-base;
+  }
+
+  &:focus {
+    @extend %add-btn-card-base;
+  }
+}

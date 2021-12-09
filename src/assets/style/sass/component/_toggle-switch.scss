@@ -1,0 +1,267 @@
+@mixin switchColor($color) {
+  background: getColorlightness($color, 95%);
+
+  .switch-button-label:before {
+    background: mix(getColorlightness($color, 80%), #000, 90%) !important;
+  }
+}
+
+.switch-button {
+  $bgColor: getColorlightness($brand-info, 99%);
+  $fColor: rgba(0, 0, 0, 0.3);
+
+  $shadowColor: #060d58;
+  $shadowlightColor: #fffdc5;
+
+  @include transition(background-color 2s ease-out);
+
+  background: $bgColor;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 240px;
+  text-align: center;
+  color: $fColor;
+  position: relative;
+  padding-right: 120px;
+  position: relative;
+  box-shadow: -2px -2px 4px rgba($shadowlightColor, 0.6),
+    3px 1px 3px rgba($shadowColor, 0.2),
+    inset 3px 2px 6px rgba($shadowlightColor, 0.6),
+    inset 3px 2px 3px rgba($shadowColor, 0.15);
+  border: 2px solid rgba($shadowlightColor, 0.2);
+  margin-top: 2px;
+
+  &:before {
+    content: "توافقی";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 1px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  &-checkbox {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 2;
+
+    &:checked + .switch-button-label:before {
+      transform: translateX(112px);
+      transition: transform 300ms linear;
+    }
+
+    & + .switch-button-label {
+      position: relative;
+      padding: 8px 0;
+      display: block;
+      user-select: none;
+      pointer-events: none;
+
+      &:before {
+        content: "";
+        background: rgba(165, 165, 165, 0.137);
+        height: 93%;
+        width: 100%;
+        position: absolute;
+        left: 5px;
+        top: 2px;
+        border-radius: 30px;
+        transform: translateX(0);
+        transition: transform 300ms;
+        box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.05);
+      }
+
+      .switch-button-label-span {
+        position: relative;
+      }
+    }
+    &:focus {
+
+          & + .switch-button-label:before {
+            box-shadow: inset 0 0 3px 2px rgba(0, 0, 0, 0.2);
+
+          }
+
+      }
+  }
+  &.warning {
+    &:before {
+      color: mix(getColorlightness($brand-warning, 50%), #000, 30%);
+    }
+    @include switchColor($brand-warning);
+    .switch-button-label {
+      color: $fColor;
+    }
+  }
+  &.optimal {
+    &:before {
+      color: $fColor;
+    }
+    @include switchColor($color-success);
+    .switch-button-label {
+      color: mix(getColorlightness($color-success, 50%), #000, 30%);
+    }
+  }
+
+}
+
+.switcher {
+  $white: rgb(223, 251, 255);
+  $grey: #eee;
+  $black: #333;
+
+  position: relative;
+  width: 200px;
+  height: 50px;
+  border-radius: 25px;
+  margin: 20px 0;
+
+  input {
+    appearance: none;
+
+    position: relative;
+
+    width: 200px;
+    height: 50px;
+    border-radius: 25px;
+
+    background-color: $black;
+    outline: none;
+
+    //  font-family: 'Oswald', sans-serif;
+    &:before,
+    &:after {
+      z-index: 2;
+
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      color: $white;
+    }
+    &:before {
+      content: "مقطوع";
+      left: 20px;
+    }
+    &:after {
+      content: "توافقی";
+      right: 20px;
+    }
+  }
+  label {
+    z-index: 1;
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+
+    border-radius: 20px;
+  }
+  &.switcher-1 {
+    input {
+      transition: 0.25s -0.1s;
+      &:checked {
+        background-color: $white;
+        &:before {
+          color: $white;
+          transition: color 0.5s 0.2s;
+        }
+        &:after {
+          color: $grey;
+          transition: color 0.5s;
+        }
+        & + label {
+          left: 10px;
+          right: 100px;
+
+          background: $black;
+
+          transition: left 0.5s, right 0.4s 0.2s;
+        }
+      }
+      &:not(:checked) {
+        background: $black;
+        transition: background-color 0.5s -0.1s;
+        &:before {
+          color: $grey;
+          transition: color 0.5s;
+        }
+        &:after {
+          color: $black;
+          transition: color 0.5s 0.2s;
+        }
+        & + label {
+          left: 100px;
+          right: 10px;
+
+          background: $white;
+
+          transition: left 0.4s 0.2s, right 0.5s, background-color 0.35s -0.1s;
+        }
+      }
+    }
+  }
+  &.switcher-2 {
+    overflow: hidden;
+    input {
+      transition: background-color 0s 0.5s;
+      &:before {
+        color: $black;
+      }
+      &:after {
+        color: $white;
+      }
+      &:checked {
+        background-color: $white;
+        & + label {
+          background: $white;
+
+          animation: turn-on 0.5s ease-out;
+
+          @keyframes turn-on {
+            0% {
+              left: 100%;
+            }
+            100% {
+              left: 0%;
+            }
+          }
+        }
+      }
+      &:not(:checked) {
+        background: $black;
+        & + label {
+          background: $black;
+
+          animation: turn-off 0.5s ease-out;
+
+          @keyframes turn-off {
+            0% {
+              right: 100%;
+            }
+            100% {
+              right: 0%;
+            }
+          }
+        }
+      }
+    }
+    label {
+      top: 0px;
+
+      width: 200px;
+      height: 50px;
+      border-radius: 25px;
+    }
+  }
+}

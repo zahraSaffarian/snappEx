@@ -1,0 +1,367 @@
+﻿$bg-category: $gray-base;
+
+@mixin btn-item($color) {
+  border: 1px solid $color;
+  background: lighten($color, 60%);
+  color: $color;
+}
+
+@mixin item-container {
+  border-right: 2px solid $bg-category;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px 40px 15px 0;
+  padding: 0px 10px 0px 0;
+}
+
+@mixin item {
+  $color: $bg-category;
+  padding: 1px 10px;
+  display: inline-block;
+  margin: 1px;
+  border-radius: $border-radius-small;
+  cursor: pointer;
+  text-align: center;
+  font-size: 11px;
+  @include btn-item(lighten($color, 10%));
+
+  &:hover {
+    $hoverColor: desaturate($color, 40%);
+    @include btn-item($hoverColor);
+  }
+  &.item-selected {
+    background: $brand-success;
+    color: lighten($color, 80%);
+  }
+}
+
+.set-selected {
+  background: #00f18c;
+  &:hover{
+    background: #02d87e;
+  }
+}
+
+.category-list-container {
+  .category-list {
+    margin-top: 10px;
+
+
+    h4 {
+      display: inline-block;
+      font-size: $form-font-size-base;
+      font-family: $font-family-iran-sans;
+      color: $gray-text;
+    }
+  }
+
+  .category-list-sub {
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    h4 {
+      display: inline-block;
+      font-size: $form-font-size-base;
+      font-family: $font-family-iran-sans;
+      color: $gray-text;
+    }
+  }
+
+  .item-container {
+    @include item-container;
+
+    .item {
+      @include item;
+
+    }
+
+    ul {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .item-container-sub {
+      @include item-container;
+    }
+  }
+
+
+  &.view-level {
+    .item-container {
+      display: none;
+    }
+
+    input {
+      $color: $gray-base;
+      position: relative;
+      width: 0;
+      height: 0;
+      margin: -13px 10px 0 5px;
+      vertical-align: middle;
+      @include plusMinus(10px, $color, ':checked', 2px);
+
+      & + label {
+        color: $color;
+        cursor: pointer;
+      }
+
+      &[type=checkbox] {
+        &:checked ~ .item-container {
+          display: block;
+          @include animate(fadeIn, 2s);
+        }
+      }
+    }
+  }
+
+}
+
+@mixin item-selected {
+  $height: $form-input-size;
+  vertical-align: middle;
+  line-height: $height;
+  border-radius: $input-border-radius;
+  height: $height;
+  padding: 0 10px;
+  text-align: center;
+  font-size: 11px;
+  width: 100%;
+}
+
+.category-item-selected {
+  @include item-selected;
+  @include btn-item($brand-success);
+
+}
+
+.category-item-not-elected {
+  @include item-selected;
+  @include btn-item($input-border-color);
+}
+
+@mixin colorManagement($color) {
+  background: $color;
+
+  @if (lightness($color)< 50%) {
+    color: lighten($color, 95%);
+
+    &:hover {
+      background: lighten($color, 5%);
+    }
+  } @else {
+    color: darken($color, 95%);
+
+    &:hover {
+      background: darken($color, 5%);
+
+    }
+  }
+}
+
+@mixin category-item( $bg-color,$height,$padding,$padding-right) {
+  $redius: 20px;
+  $color: highlighter($bg-color, 50%);
+
+  .category-part {
+    display: inline-block;
+    line-height: $height;
+    padding: $padding;
+    cursor: pointer;
+    margin: 0;
+    float: right;
+    @include colorManagement($bg-color);
+  }
+  & > .checkbox-title-label {
+    @extend .category-part;
+    padding-right: $padding-right;
+    border-radius: 0 $redius $redius 0;
+    font-size: 90%;
+  }
+  & > .category-edit {
+    @extend .category-part;
+    border-radius: $redius 0 0 $redius;
+    border-right: 1px dashed;
+    border-right-color: highlighter($bg-color, 30%);
+    
+    &.icon-check-circle {
+      @extend .set-selected;
+    }
+    &::before{
+      vertical-align: middle;
+      display: inline-block;
+    }
+  }
+  & > .checkbox-title-input {
+    float: right;
+    margin: 10px -10px 0 5px;
+    @include plusMinus(10px, $color, ':checked', 2px);
+
+    &:before {
+      left: -$padding-right + 5px;
+    }
+
+    &:after {
+      left: -$padding-right;
+    }
+  }
+}
+
+.category-list-edit-container {
+  @extend .category-list-container;
+
+  $bg-color: #444;
+  $height: 30px;
+  $padding: 0 12px;
+  $padding-right: 30px;
+  $color: highlighter($bg-color, 50%);
+  //----------------------------------------
+  $bg-color2: lighten($bg-color, 65%);
+  $height2: 25px;
+  $padding-right2: 15px;
+  //--------------------------------
+  $bg-color3: lighten($bg-color, 10%);
+
+  li.category-list {
+
+    @include category-item($bg-color, $height, $padding, $padding-right);
+    display: block;
+    overflow: hidden;
+
+
+    .item-container {
+      clear: both;
+      float: right;
+      width: 100%;
+      padding-top: 5px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+
+      .item-wrapper {
+
+        border-radius: 20px;
+        border: 1px solid darken($bg-color2, 5%);
+        overflow: hidden;
+        display: inline-block;
+
+        @include category-item($bg-color2, $height2, $padding, $padding-right2);
+      }
+
+      .category-list-sub {
+        margin-top: 5px;
+        margin-bottom: 5px;
+
+        @include category-item($bg-color3, $height, $padding, $padding-right);
+
+        .item-container {
+          .item-wrapper {
+            border-radius: 20px;
+            border: 1px solid darken($bg-color2, 5%);
+
+            overflow: hidden;
+            display: inline-block;
+
+            @include category-item($bg-color2, $height2, $padding, $padding-right2);
+          }
+        }
+
+      }
+
+
+    }
+
+  }
+
+}
+
+.category-list-check-container {
+  @extend .category-list-container;
+
+  $bg-color: #ccc;
+  $height: 30px;
+  $padding: 0 12px;
+  $padding-right: 30px;
+  $color: highlighter($bg-color, 50%);
+  //----------------------------------------
+  $bg-color2: #f5f5f5;
+  $height2: 25px;
+  $padding-right2: 15px;
+  //--------------------------------
+  $bg-color3: #ddd;
+  
+  li.category-list {
+
+    @include category-item($bg-color, $height, $padding, $padding-right);
+    display: block;
+    overflow: hidden;
+
+   
+
+    .item-container {
+      clear: both;
+      float: right;
+      padding-top: 5px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+
+      .item-wrapper {
+
+        border-radius: 20px;
+        border: 1px solid darken($bg-color2, 5%);
+        overflow: hidden;
+        display: inline-block;
+
+        @include category-item($bg-color2, $height2, $padding, $padding-right2);
+      }
+
+      .category-list-sub {
+        
+        margin-top: 5px;
+        margin-bottom: 5px;
+
+        @include category-item($bg-color3, $height, $padding, $padding-right);
+
+        .item-container {
+          .item-wrapper {
+            border-radius: 20px;
+            border: 1px solid darken($bg-color2, 5%);
+
+            overflow: hidden;
+            display: inline-block;
+
+            @include category-item($bg-color2, $height2, $padding, $padding-right2);
+          }
+        }
+      }
+    }
+  }
+}
+
+.selected-category-container{
+  $bg-color: #f0f0f0;
+  $height: 25px;
+  $padding: 0 12px;
+  $padding-right: 10px;
+  $color: highlighter($bg-color, 50%);
+  
+    .item-wrapper {
+      border-radius: 20px;
+      border: 1px solid darken($bg-color, 5%);
+
+      overflow: hidden;
+      display: inline-block;
+
+      @include category-item($bg-color, $height, $padding, $padding-right);
+      .icon-trash-2{
+        
+        &:hover{
+          background: #fb6190!important;
+        }
+        &::before{
+          font-size:18px;
+        }
+        
+      }
+    }
+
+}

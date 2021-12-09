@@ -1,0 +1,72 @@
+@mixin chipsBase($color) {
+  $font-color: getColorlightness($color, 30);
+  $bg: getColorlightness($color, 90);
+  $bg-hover: getColorlightness($color, 85);
+  color: $font-color;
+  background: $bg;
+  &:hover {
+    background: $bg-hover;
+    border-width: 0 !important;
+  }
+  .btn-remove {
+    color: $font-color;
+
+    &:hover {
+      color: darken($font-color, 10%);
+    }
+  }
+  &.btn-add-chip {
+    color: $bg;
+    background: $font-color;
+    &hover {
+      color: darken($font-color, 10%);
+    }
+    span {
+      line-height: 200%;
+    }
+  }
+}
+
+%chip-base {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 0 5px $margin-small;
+  padding: 2px 10px 2px 5px;
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px 5px 0;
+
+  &.input-container {
+    //padding-top: 5px;
+  }
+
+  .chip {
+    @extend %chip-base;
+    @include chipsBase($brand-info);
+    line-height: 200%;
+    height: 25px;
+    .btn-remove {
+      padding: 0 !important;
+      font-size: 21px;
+      margin-right: 5px;
+    }
+  }
+
+  .btn-add-chip {
+    border: 0;
+    padding-right: 20px;
+    padding-left: 20px
+    ;
+    @extend %chip-base;
+    @include chipsBase($brand-info);
+  }
+}
