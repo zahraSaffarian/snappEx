@@ -4,7 +4,7 @@ body {
   font-family: $font-family-base !important;
   font-size: 13px;
   text-align: right;
-  background-color: red;
+  background-color: $body-bg;
   color: $text-color;
   line-height: $line-height-default;
   overflow-x: hidden;
@@ -36,13 +36,11 @@ a {
 i {
   font-style: italic;
 }
-.container-main {
-  width: $container-large-desktop;
-  margin: auto;
-
-  @media only screen and(max-width: 1500px) {
-    width: 100%;
-    padding: 0 10px;
+.container {
+  max-width: auto !important;
+  width: 100% !important;
+  @include media-max($container-tablet) {
+    max-width: auto !important;
   }
 }
 
@@ -61,4 +59,11 @@ i {
 }
 .click {
   cursor: pointer;
+}
+.center-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
 }

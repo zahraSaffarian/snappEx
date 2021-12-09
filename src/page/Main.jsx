@@ -16,7 +16,7 @@ function Main() {
     getList();
   }, []);
   return (
-    <div>
+    <div className="container">
       categories...
       <div>
         {categories.length}

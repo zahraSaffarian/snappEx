@@ -1,12 +1,4 @@
-//== Colors
-//
-//## Gray and brand colors for use across Bootstrap.
-$brand-attention-1: #ffa207;
-$brand-light: #beac93;
-$brand-bg-golden: #8a7352;
-$brand-default: #5f5355;
-$brand-dark: #4b4142;
-$attention: #c20012;
+$attention: #ff661f;
 
 $img-url: "../../../../images/";
 $font-url: "../../fonts/";
@@ -23,15 +15,8 @@ $brand-intense-info: #0069ff !default;
 $brand-error: $attention;
 $brand-warning: #ff9000;
 
-$glass-light: rgba(255, 255, 255, 0.2);
-$glass-dark: rgba(0, 0, 0, 0.6);
-
-$disabled-bg: rgba(0, 0, 0, 0.1);
-$color-success: #00bb53;
-$banner-bg: $brand-success;
-
 //** Background color for `<body>`.
-$body-bg: #fafafa !default;
+$body-bg: #f1f2f4 !default;
 $loading-color: $brand-success;
 //btn
 $btn-primary: $brand-intense-info;
@@ -45,8 +30,7 @@ $text-color: $gray-base !default;
 $text-color-dark: #000 !default;
 $txt-hover-color: #000 !default;
 $border-base-color: #ebedf2 !default;
-$shadow-color: rgba(darken($banner-bg, 5%), 0.15);
-$shadow-color-hover: rgba(darken($banner-bg, 5%), 0.5);
+
 //== Typography
 //
 //## Font, line-height, and color for body text, headings, and more.
@@ -57,7 +41,7 @@ $font-family-base: $font-family-iran-sans !default;
 //== Components
 //
 //## Define common padding and border radius sizes and more.
-$border-radius-base: 4px !default;
+$border-radius-base: 6px !default;
 $border-radius-medium: 8px !default;
 $border-radius-large: 10px !default;
 $border-radius-xlarge: 20px !default;
@@ -94,35 +78,16 @@ $font-family-head: $font-family-bold-iran-sans !default;
 $z-index-base: 1;
 $z-index-navbar: 1000;
 $z-index-navbar-brand: 100;
-$z-index-category-card: 100;
-$z-index-category-list-item: 110;
-$z-index-search-list-item: 300;
-$modal-z-index: 1050;
-//== Container sizes
-//
-//## Define the maximum width of `.container` for different screen sizes.
-// large screen / desktop
+
 $container-large-desktop: 1400px !default;
-// Medium screen / desktop
 $container-desktop: 1024px !default;
-// Large screen / tablet
 $container-large-tablet: 992px !default;
-//Small screen / tablet
 $container-tablet: 768px !default;
-//Large screen / mobile
 $container-large-mobile: 600px !default;
-//col-sm
 $container-sm: 576px !default;
-//Small screen / mobile
 $container-mobile: 480px !default;
-
-//== Card Component
-//
-//##
-
-$card-border-color: rgba(0, 0, 0, 0.125);
-$card-box-shadow: 0 0.125rem 0.25rem $shadow-color;
-$shadow-color-hover: 0 0.125rem 0.5rem darken(rgba($shadow-color, 0.5), 30%);
+//---------------------------
+$border-color: #e0e0e0;
 
 //== Forms
 //
@@ -141,70 +106,20 @@ $input-border-radius: $border-radius-small;
 $input-height: 38px;
 $input-focus-outline: $brand-intense-info;
 
-//== Navbar Main
-$nav-height: 60px;
-
-//== Title Card
-$article-radius: 15px;
-$article-bg: rgba(238, 238, 238, 0.7);
-$article-border-color: rgba(221, 221, 221, 0.7);
-$txt-shadow: rgba(0, 0, 0, 0.6);
-$article-height: 365px;
-$article-border-color: $card-border-color;
-$article-shadow: $card-box-shadow;
 //----popup------
 $z-index-popup: 50;
 //----------  btn  ----------------
-$brn-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+$base-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 //----panel------
 
-$panel-box-border-radius: $border-radius-large;
-$panel-box-padding: $padding-small;
-$panel-box-shadow: $card-box-shadow;
-$panel-box-border-color: rgba(darken($banner-bg, 40%), 0.15);
+$panel-box-bg: #fff;
+$panel-box-border-color: $border-color;
+$panel-box-border: 1px solid $panel-box-border-color;
 
 //----btn------
 $btn-font-size: $font-size-small;
 $btn-height: 31px;
 
-//-----modal------
-
-$modal-bg-cover: rgba(234, 234, 234, 0.1);
-$modal-footer-bg: rgba($gray-lighten, 0.3);
-$modal-content-border-color: rgba($gray-lighten, 0.5);
 //------------------------link-------------------------------
 $link-color: $brand-success;
 $link-hover-color: $gray-base;
-//---------------------------breadcrumb--------------------------------
-$breadcrumb-bg: #ececec;
-$breadcrumb-radiuse: $border-radius-default;
-//------------------shadow----------------------------------
-$shadow-small: 0 0 5px rgba(0, 0, 0, 0.1);
-$shadow-base: 0 0 5px rgba(0, 0, 0, 0.3);
-$shadow-dark: 0 2px 10px rgba(0, 0, 0, 0.7);
-$shadow-light: 2px 2px 9px rgba(0, 0, 0, 0.1);
-$textshadow-light: 1px 1px 4px rgba(0, 0, 0, 0.1);
-$textshadow-attention: 0px 0px 7px #fdd200a1;
-
-//-----footer----
-$footer-bg-color: #f3f0ec;
-
-$article-line-height: 200% !default;
-
-//-------------------------------------
-$dp-width: 250px;
-$dpbg: rgba($brand-intense-info, 0.2);
-$dpFontColor: getColorlightness($brand-intense-info, 10%);
-$dp-cell-width: 30px;
-//-------------------------------------------
-$form-description-color: $brand-info;
-$form-description-color-dark: darken($form-description-color, 40%);
-$form-description-color-lighten: lighten($form-description-color, 23%);
-
-$cat-sub-menu-color: $brand-info;
-
-//----------------------------------------------
-$list-border: 1px solid $input-border-color;
-$list-import-border: 1px solid darken($input-border-color, 30%);
-$list-hover-bg: rgba($brand-intense-info, 0.1);
-$list-padding: $padding-small;

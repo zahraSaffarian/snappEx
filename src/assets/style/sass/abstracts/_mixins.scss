@@ -17,15 +17,6 @@
   }
 }
 
-@mixin panel-box() {
-  padding: $panel-box-padding;
-  border-radius: $panel-box-border-radius;
-  direction: rtl;
-  box-shadow: $panel-box-shadow;
-  overflow: hidden;
-  border-color: $panel-box-border-color;
-}
-
 @mixin ellipsis-text($clamp) {
   display: -webkit-box;
   -webkit-line-clamp: $clamp;
@@ -78,11 +69,11 @@
 }
 
 @mixin card-content {
-  border: 1px solid $article-border-color;
-  border-radius: $article-radius;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-base;
   background-color: #fff;
   padding: $padding-default;
-  box-shadow: $article-shadow;
+  box-shadow: $base-shadow;
 }
 
 @mixin animate($name, $time) {

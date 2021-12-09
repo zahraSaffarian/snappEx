@@ -3,29 +3,14 @@
   border: 1px solid $bg;
   height: $btn-height;
   direction: rtl;
-  border-radius: $border-radius-default;
+  border-radius: $border-radius-base;
   padding: 0 $padding-default;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
   cursor: pointer;
-  box-shadow: $brn-shadow;
   transition: background-color 0.5s ease;
-
-  &.btn-full-size {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-  }
-  &.btn-slim {
-    height: 25px;
-  }
-
-  .btn-icon {
-    font-size: $font-size-large;
-    vertical-align: middle;
-    margin-left: 3px;
-  }
-
+  min-width: 104px;
   &:focus {
     box-shadow: 0 0 0 0.2rem rgba($bg, 0.5);
     border-color: $bg;
@@ -86,14 +71,7 @@
 }
 
 $btn-color: (
-  "primary": $btn-primary,
-  "info": $btn-Info,
-  "success": $btn-success,
-  "danger": $btn-danger,
-  "default": $btn-default,
-  "glass-light": $glass-light,
-  "glass-darck": $glass-dark,
-  "default-brand":$brand-bg-golden,
+  "default": $attention,
 );
 @each $btn, $color in $btn-color {
   .btn-#{$btn} {
@@ -101,202 +79,5 @@ $btn-color: (
   }
   .btn-outline-#{$btn} {
     @include btnStyle($color, line);
-  }
-}
-.concrete-btn {
-  margin: 0 5px;
-
-  .btn-unit {
-    @include btnStyle($brand-success, line);
-    font-size: $font-size-small;
-    display: inline-block;
-    line-height: $btn-height;
-    float: right;
-    padding: 0 10px;
-    margin-right: 1px;
-    color: $brand-success !important;
-    &:hover,
-    &:active,
-    &:focus {
-      color: #fff !important;
-    }
-
-    @include media-max($container-mobile) {
-      padding: 0 5px;
-      font-size: 80%;
-    }
-
-    &:first-child {
-      border-radius: 0 $border-radius-default $border-radius-default 0;
-    }
-
-    &:last-child {
-      border-radius: $border-radius-default 0 0 $border-radius-default;
-    }
-
-    &:not(:last-child, :last-child) {
-      border-radius: 0;
-    }
-
-    &.plus {
-      @include media-max($container-mobile) {
-        font-size: 20px;
-      }
-
-      font-size: 32px;
-      line-height: $btn-height + 2px;
-    }
-  }
-}
-
-.btn-loading {
-  position: relative;
-  cursor: progress !important;
-  &:before {
-    $size: 1rem;
-    content: "";
-    display: inline-block;
-    width: $size;
-    height: $size;
-    vertical-align: text-bottom;
-    border: ($size * 0.2) solid rgba(#000, 0.4);
-    border-right-color: transparent;
-    border-radius: 50%;
-    -webkit-animation: spinner-border 0.75s linear infinite;
-    animation: spinner-border 0.75s linear infinite;
-    position: absolute;
-    top: calc(50% - (#{$size} * 0.5));
-    right: calc(50% - (#{$size} * 0.5));
-  }
-}
-
-button.btn-no-style {
-  background: 0;
-  border: 0;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background: 0;
-    border: 0;
-    outline: 0;
-  }
-}
-
-.btn-link {
-  display: inline-block;
-
-  background: #fff;
-  padding: 0 10px;
-  border-radius: $border-radius-xlarge;
-  font-size: $font-size-x-small;
-  line-height: 200%;
-  margin: 1px;
-  cursor: pointer;
-  text-align: center;
-
-  &.btn-full-size {
-    width: 100%;
-  }
-  &.danger-fill {
-    background-color: $brand-error !important;
-    color: #fff !important;
-    border: 1px solid $brand-error!important;
-    &::before{
-        color: #fff !important;
-    }
-    &:hover{
-        background-color:darken( $brand-error,10%)!important;
-        border-color:darken( $brand-error,15%)!important ;
-    }
-  }
-
-  $colors: (
-    "danger": $brand-error,
-    "success": $brand-success,
-    "warning": $brand-warning,
-    "info": $brand-info,
-    "dark": $gray-text,
-  );
-
-  @each $name, $color in $colors {
-    &.#{$name}-text {
-      border: 1px solid $color;
-      color: $color !important;
-
-      &:hover,
-      &:focus,
-      &:active {
-        background: $color;
-        color: #fff !important;
-        text-decoration: none;
-        outline: none;
-
-        &::before {
-          color: #fff !important;
-        }
-      }
-      &::before {
-        color: $color !important;
-        vertical-align: middle;
-        font-size: 1.7em;
-      }
-      &:disabled,
-      &:disabled:hover,
-      &:disabled:focus,
-      &[disabled],
-      &[disabled]:hover,
-      &[disabled]:focus {
-        border-color: lighten($gray-light, 10%);
-        background: $gray-lighten !important;
-        color: $gray-light !important;
-        cursor: no-drop;
-        &::before {
-          color: $gray-light !important;
-        }
-      }
-
-      &[class^="icon-"] {
-        padding-left: 10px;
-      }
-    }
-  }
-}
-.btn-small {
-  height: 25px;
-  font-size: 90%;
-}
-.btn-s-width {
-  min-width: 100px;
-  justify-content: center;
-  margin: 1px;
-}
-
-.btn-info-popup {
-  $w: 28px;
-  $btn-color: $brand-intense-info;
-  width: $w;
-  height: $w;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-evenly;
-  font-size: 18px;
-  cursor: pointer;
-  box-shadow: $brn-shadow;
-  background-color: transparent;
-  border-radius: 50%;
-  line-height: $w;
-  padding-top: 5px;
-  margin: 0 $margin-small;
-  border: 2px solid $btn-color;
-  transition: background-color 0.5s ease;
-  color: $btn-color;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: $btn-color;
-    color: #fff;
   }
 }
