@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getListService } from "../service/apiService";
 import Loading from "../component/Loading";
 import ProductList from "../component/product/productList";
+import CategoryList from "../component/category/CategoryList";
 
 function Main() {
   const [list, setList] = useState([]);
@@ -18,13 +19,10 @@ function Main() {
   }, []);
   return (
     <div className="container">
-      categories...
       <div>
-        {categories.length}
-        {categories.map((item) => (
-          <div key={item.id}>{item.title}</div>
-        ))}
+        <CategoryList categories={categories} />
       </div>
+      <div></div>
       <ProductList list={list} />
     </div>
   );

@@ -1,0 +1,33 @@
+.category-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: auto;
+    cursor: grab;
+    .item-container {
+        $h: 52px;
+        height: $h;
+        background-color: #fff;
+        //   box-shadow: var(--card-shadow-2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap;
+        margin-left: 8px;
+        padding-right: 10px;
+        padding-left: 2px;
+        border-radius: 6px;
+        transition: color 0.3s, border 0.3s;
+        // transition: color var(--animation-time,.3s),border var(--animation-time,.3s);
+        // border: 1px solid var(--white-color);
+        .img-container {
+            $size: 48px;
+            height: $size;
+            width: $size;
+            img {
+                height: 100%;
+            }
+        }
+    }
+}
