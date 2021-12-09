@@ -1,6 +1,4 @@
 
-import './assets/style/bootstrap.min.css';
-import './assets/style/sass/style.css';
 import Main from './page/Main';
 
 function App() {

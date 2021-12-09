@@ -8,32 +8,23 @@
 @import "abstracts/variables";
 @import "abstracts/mixins";
 @import "abstracts/function";
-@import "abstracts/flex-mixin";
 
 // //base
 @import "base/animate";
 @import "base/global";
 
 //component
-@import "component/button";
-@import "component/form";
+//@import "component/button";
+//@import "component/form";
 @import "component/inputs";
 @import "component/product";
-@import "component/article";
-@import "component/breadcrumb";
-@import "component/popular-article";
 @import "component/pagination";
-@import "component/article-select-content";
-@import "component/notification";
 @import "component/card-panel";
-@import "component/category-list";
 @import "component/loading";
-@import "component/alert";
-@import "component/tab";
+//@import "component/tab";
 @import "component/text";
-@import "component/page";
-@import "component/list";
+//@import "component/list";
 
 //layout
-//@import "layout/body";
+@import "layout/body";
 //pages

@@ -1,11 +1,11 @@
 //== Colors
 //
 //## Gray and brand colors for use across Bootstrap.
-$brand-attention-1:#ffa207;
-$brand-light:#beac93;
-$brand-bg-golden:#8a7352;
-$brand-default:#5f5355;
-$brand-dark:#4B4142;
+$brand-attention-1: #ffa207;
+$brand-light: #beac93;
+$brand-bg-golden: #8a7352;
+$brand-default: #5f5355;
+$brand-dark: #4b4142;
 $attention: #c20012;
 
 $img-url: "../../../../images/";
@@ -155,7 +155,7 @@ $article-shadow: $card-box-shadow;
 //----popup------
 $z-index-popup: 50;
 //----------  btn  ----------------
-$brn-shadow: 0 0 3px rgba(0,0,0,0.5);
+$brn-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 //----panel------
 
 $panel-box-border-radius: $border-radius-large;
@@ -205,6 +205,6 @@ $cat-sub-menu-color: $brand-info;
 
 //----------------------------------------------
 $list-border: 1px solid $input-border-color;
-$list-import-border: 1px solid darken($input-border-color,30%) ;
+$list-import-border: 1px solid darken($input-border-color, 30%);
 $list-hover-bg: rgba($brand-intense-info, 0.1);
 $list-padding: $padding-small;
