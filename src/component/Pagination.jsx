@@ -4,9 +4,10 @@ function Pagination({ onChange }) {
   const [index, setIndex] = useState(0);
   const handelClick = (val) => {
     setIndex((prev) => prev + val);
-    onChange(index);
   };
-
+  useEffect(() => {
+    onChange(index);
+  }, [index]);
   return (
     <div className="pagination-container center-container">
       <button

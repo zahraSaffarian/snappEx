@@ -15,9 +15,10 @@ function Main() {
   const [loading, setLoading] = useState(false);
   const [sort, setSort] = useState([]);
   const [isSortShow, setIsSortShow] = useState(0);
+  const [selectSort, setSelectSort] = useState(null);
   const getList = async (page) => {
     setLoading(true);
-    const result = await getListService(page);
+    const result = await getListService(page, selectSort);
     console.log(result.data);
     setList(result.data.product_variations);
     setCategoriest(result.data.categories);
@@ -27,13 +28,15 @@ function Main() {
   };
   const pagingHandler = (newIndex) => {
     console.log("pagingHandler" + newIndex);
+    setSelectSort(newIndex);
     setIndex(newIndex);
   };
   useEffect(() => {
     getList(index);
   }, [index]);
 
-  const HandellSort = () => {
+  const HandellSort = (selectSort) => {
+    console.log(selectSort);
     setIndex(0);
   };
 
