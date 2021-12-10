@@ -28,7 +28,6 @@ function Main() {
   };
   const pagingHandler = (newIndex) => {
     console.log("pagingHandler" + newIndex);
-    setSelectSort(newIndex);
     setIndex(newIndex);
   };
   useEffect(() => {
@@ -38,6 +37,7 @@ function Main() {
   const HandellSort = (selectSort) => {
     console.log(selectSort);
     setIndex(0);
+    setSelectSort(selectSort);
   };
 
   return (
