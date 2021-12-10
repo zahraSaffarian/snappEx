@@ -13,7 +13,7 @@ function Sort({ sortlist, sortShow }) {
     setSortDefault(event.target.value);
   };
   return (
-    <FullPage titel={"مرتب سازی"} IsShow={showPopUp}>
+    <FullPage titel={"مرتب سازی"} IsShow={sortShow}>
       <ul className="list-Form" onChange={onChangeHandler}>
         {sortlist.map((item) => (
           <li key={item.name}>

@@ -3,11 +3,9 @@ import React, { useEffect, useState } from "react";
 function FullPage({ children, titel, IsShow }) {
   const [show, setShow] = useState(false);
   useEffect(() => {
-    setShow(IsShow);
+    if (IsShow > 0) setShow(true);
   }, [IsShow]);
-  useEffect(() => {
-    console.log("hello");
-  }, [show]);
+
   return (
     <>
       {show && (

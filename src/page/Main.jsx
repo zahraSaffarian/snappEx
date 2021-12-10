@@ -14,7 +14,7 @@ function Main() {
   const [index, setIndex] = useState(0);
   const [loading, setLoading] = useState(false);
   const [sort, setSort] = useState([]);
-  const [isSortShow, setIsSortShow] = useState(false);
+  const [isSortShow, setIsSortShow] = useState(0);
   const getList = async (page) => {
     setLoading(true);
     const result = await getListService(page);
@@ -32,6 +32,7 @@ function Main() {
   useEffect(() => {
     getList(index);
   }, [index]);
+
   return (
     <>
       <Loading show={loading} />
@@ -39,7 +40,7 @@ function Main() {
       <Header />
       <FilterHeader
         clickSort={() => {
-          setIsSortShow(true);
+          setIsSortShow((perv) => perv + 1);
         }}
         fillter={filterList}
       />
