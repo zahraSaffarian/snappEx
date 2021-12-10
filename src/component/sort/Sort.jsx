@@ -6,13 +6,25 @@ function Sort({ sortlist, sortShow }) {
   useEffect(() => {
     //setSortDefault();
   }, []);
+  const onChangeHandler = (event) => {
+    console.log(event.target.value);
+  };
   return (
-    <FullPage>
-      sort
-      {sortlist.map((item) => (
-        // <Item key={item.id} item={item} />
-        <div key={item.name}>{item.translation}</div>
-      ))}
+    <FullPage titel={"مرتب سازی"}>
+      <ul className="list-Form" onChange={onChangeHandler}>
+        {sortlist.map((item) => (
+          // <Item key={item.id} item={item} />
+          <li key={item.name}>
+            <input
+              type="radio"
+              id={item.name}
+              name="fav_language"
+              value={item.name}
+            />
+            <label htmlFor={item.name}> {item.translation}</label>
+          </li>
+        ))}
+      </ul>
     </FullPage>
   );
 }

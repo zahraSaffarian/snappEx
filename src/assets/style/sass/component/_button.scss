@@ -81,3 +81,15 @@ $btn-color: (
     @include btnStyle($color, line);
   }
 }
+.btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &.icon-btn-hover {
+    width: $header-btn-size;
+    transition: background-color 0.5s ease;
+    &:hover {
+      background-color: rgba($gray-lighten, 0.3);
+    }
+  }
+}

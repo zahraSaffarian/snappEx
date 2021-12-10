@@ -6,4 +6,19 @@
     bottom: 0;
     top: $header-main-h;
     z-index: $z-full-page;
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: $header-sub-h;
+        padding: 0 $padding-default;
+        border-bottom: $panel-box-border;
+        .titel {
+            flex-grow: 1;
+            text-align: center;
+            font-size: $sub-title-font-size;
+            padding-right: $header-btn-size;
+        }
+    }
 }

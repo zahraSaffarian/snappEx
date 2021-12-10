@@ -4,7 +4,7 @@ function Header() {
   return (
     <div className="header">
       <div className="main-title">
-        <a className="icon-chevron-right click fa-lg base-text"></a>
+        <button className="btn icon-btn-hover icon-chevron-right click fa-lg base-text" />
         <b>سوپرمارکت</b>
       </div>
       <div className="sub-title">لیست محصولات</div>
