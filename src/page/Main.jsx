@@ -33,10 +33,14 @@ function Main() {
     getList(index);
   }, [index]);
 
+  const HandellSort = () => {
+    setIndex(0);
+  };
+
   return (
     <>
       <Loading show={loading} />
-      <Sort sortlist={sort} sortShow={isSortShow} />
+      <Sort sortlist={sort} sortShow={isSortShow} onSortSubmit={HandellSort} />
       <Header />
       <FilterHeader
         clickSort={() => {
