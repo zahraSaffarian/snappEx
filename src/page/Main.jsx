@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { getListService } from "../service/apiService";
 import Loading from "../component/Loading";
 import ProductList from "../component/product/productList";
@@ -6,35 +6,36 @@ import CategoryList from "../component/category/CategoryList";
 import Header from "../component/layout/Header";
 import FilterHeader from "../component/filter/FilterHeader";
 import Pagination from "../component/Pagination";
-import BaseContext from "../store/base-context";
 
 function Main() {
-  const baseCtx = useContext(BaseContext);
-  const filtertVal = baseCtx.filter;
   const [list, setList] = useState([]);
   const [categories, setCategoriest] = useState([]);
   const [filterList, setFilterList] = useState([]);
+  const [index, setIndex] = useState(0);
 
   const getList = async (page) => {
     const result = await getListService(page);
-    console.log("hi");
     console.log(result.data);
     setList(result.data.product_variations);
     setCategoriest(result.data.categories);
     setFilterList(result.data.meta.filter.results);
   };
+  const pagingHandler = (newIndex) => {
+    console.log("pagingHandler" + newIndex);
+    setIndex(newIndex);
+  };
   useEffect(() => {
-    getList(0);
-  }, []);
+    getList(index);
+  }, [index]);
   return (
     <>
       <Header />
       <FilterHeader fillter={filterList} />
       <div className="container">
         <CategoryList categories={categories} />
-        <h1>{filtertVal.page}</h1>
+
         <ProductList list={list} />
-        <Pagination />
+        <Pagination onChange={pagingHandler} />
         <div></div>
       </div>
     </>

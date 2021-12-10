@@ -1,11 +1,11 @@
-import React, { useEffect, useContext, useState } from "react";
-import BaseContext from "../store/base-context";
-function Pagination() {
+import React, { useEffect, useState } from "react";
+
+function Pagination({ onChange }) {
   const [index, setIndex] = useState(0);
-  const baseCtx = useContext(BaseContext);
+
   useEffect(() => {
-    baseCtx.updateFilter(index);
     console.log("---> " + index);
+    onChange(index);
   }, [index]);
   return (
     <div className="pagination-container center-container">
