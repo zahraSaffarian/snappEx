@@ -6,6 +6,7 @@
     bottom: 0;
     top: $header-main-h;
     z-index: $z-full-page;
+
     .header {
         display: flex;
         flex-direction: row;
@@ -19,6 +20,29 @@
             text-align: center;
             font-size: $sub-title-font-size;
             padding-right: $header-btn-size;
+        }
+    }
+    .body {
+        margin-bottom: $full-page-footer-h;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        @include scroll(5px, $gray, $gray);
+        position: relative;
+    }
+    .footer {
+        height: $full-page-footer-h;
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: space-between;
+        width: 100%;
+        .btn {
+            flex-grow: 1;
+            margin: 0 8px;
+            height: $full-page-footer-btn-h;
+            font-size: $font-size-default;
         }
     }
 }

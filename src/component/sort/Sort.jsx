@@ -16,15 +16,23 @@ function Sort({ sortlist, sortShow }) {
           // <Item key={item.id} item={item} />
           <li key={item.name}>
             <input
+              className="redio-style"
               type="radio"
               id={item.name}
               name="fav_language"
               value={item.name}
             />
-            <label htmlFor={item.name}> {item.translation}</label>
+            <label className="input-redio" htmlFor={item.name}>
+              {" "}
+              {item.translation}
+            </label>
           </li>
         ))}
       </ul>
+      <div className="footer">
+        <button className="btn btn-outline-dark">حذف همه</button>
+        <button className="btn btn-gray">اعمال</button>
+      </div>
     </FullPage>
   );
 }

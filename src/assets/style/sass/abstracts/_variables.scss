@@ -61,7 +61,7 @@ $line-height-long-text: 300% !default;
 //Font Size Header tag & FontSize Standard
 $font-family-header: $font-family-bold-iran-sans !default;
 $font-size-default: 14px !default;
-$font-size-large: ceil(($font-size-default * 1.25)) !default; // ~18px
+$font-size-large: 17px !default;
 $font-size-small: ceil(($font-size-default * 0.85)) !default; // ~12px
 $font-size-x-small: 10px !default;
 $font-size-base: $font-size-default !default;
@@ -101,13 +101,6 @@ $form-padding-x: 20px;
 $form-padding-y: 20px;
 $form-radius: $border-radius-large;
 
-$form-input-size: 38px;
-$input-border-color: #e5e5e5;
-$input-border: 1px solid $input-border-color;
-$input-border-radius: $border-radius-small;
-$input-height: 38px;
-$input-focus-outline: $brand-intense-info;
-
 //----popup------
 $z-index-popup: 50;
 //----------  btn  ----------------
@@ -117,7 +110,16 @@ $base-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 $panel-box-bg: #fff;
 $panel-box-border-color: $border-color;
 $panel-box-border: 1px solid $panel-box-border-color;
-
+//--------input---------------
+$form-input-size: 38px;
+$input-border-color: #e5e5e5;
+$input-border: $panel-box-border;
+$input-border-radius: $border-radius-medium;
+$input-height: 38px;
+$input-font-size: $font-size-large;
+$input-focus-outline: $brand-intense-info;
+$input-padding: $padding-default;
+$input-select: $brand-success;
 //----btn------
 $btn-font-size: $font-size-small;
 $btn-height: 31px;
@@ -135,6 +137,8 @@ $category-h: 84px;
 $product-h: calc(
     100vh - (#{$header-main-h} + #{$header-sub-h} + #{$pagination-h} + #{$filter-h} + #{$category-h} + 5px)
 );
+$full-page-footer-h: 80px;
+$full-page-footer-btn-h: 48px;
 //--------------------------------
 $product-gutter: 16px;
 //-------------------------

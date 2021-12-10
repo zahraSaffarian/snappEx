@@ -1,5 +1,49 @@
 ﻿.list-Form {
     li {
-        padding: $padding-default;
+        margin: 0 $margin-default $margin-default;
+    }
+}
+.input-redio {
+    display: block;
+    border: $input-border;
+    border-radius: $input-border-radius;
+    font-size: $input-font-size;
+    position: relative;
+    padding: $input-padding;
+    cursor: pointer;
+    transition: border-color 1s ease;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    &:hover {
+        border-color: $input-select;
+    }
+    &::after {
+        content: "";
+        $size: 15px;
+        width: $size;
+        height: $size;
+        background-color: lighten($panel-box-border-color, 5%);
+        border: $panel-box-border;
+        border-radius: 50%;
+        text-align: center;
+        line-height: $size;
+        font-size: 9px;
+        transition: all 1s ease;
+    }
+}
+.redio-style {
+    height: 0;
+    width: 0;
+    &:checked ~ .input-redio {
+        border-color: $input-select;
+
+        &::after {
+            color: #fff;
+            content: "✓";
+            background-color: $input-select;
+            border-color: $input-select;
+        }
     }
 }

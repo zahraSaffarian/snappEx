@@ -72,6 +72,8 @@
 
 $btn-color: (
   "default": $attention,
+  "gray": $gray,
+  "dark": $gray-base,
 );
 @each $btn, $color in $btn-color {
   .btn-#{$btn} {
