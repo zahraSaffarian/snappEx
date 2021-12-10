@@ -77,6 +77,7 @@ $font-size-h6: ceil(($font-size-default * 0.85)) !default; // ~12px
 $font-family-head: $font-family-bold-iran-sans !default;
 //----z-index------
 $z-index-base: 1;
+$z-full-page: 100;
 $z-index-navbar: 1000;
 $z-index-navbar-brand: 100;
 

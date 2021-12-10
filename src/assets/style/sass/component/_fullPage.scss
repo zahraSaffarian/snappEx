@@ -1,0 +1,9 @@
+.full-page-container {
+    background-color: $default-bg;
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: $header-main-h;
+    z-index: $z-full-page;
+}

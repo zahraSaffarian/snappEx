@@ -6,13 +6,14 @@ import CategoryList from "../component/category/CategoryList";
 import Header from "../component/layout/Header";
 import FilterHeader from "../component/filter/FilterHeader";
 import Pagination from "../component/Pagination";
-
+import Sort from "../component/sort/Sort";
 function Main() {
   const [list, setList] = useState([]);
   const [categories, setCategoriest] = useState([]);
   const [filterList, setFilterList] = useState([]);
   const [index, setIndex] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [sort, setSort] = useState([]);
 
   const getList = async (page) => {
     setLoading(true);
@@ -20,7 +21,8 @@ function Main() {
     console.log(result.data);
     setList(result.data.product_variations);
     setCategoriest(result.data.categories);
-    setFilterList(result.data.meta.filter.results);
+    setFilterList(result.data.meta);
+    setSort(result.data.meta.sort.results);
     setLoading(false);
   };
   const pagingHandler = (newIndex) => {
@@ -33,6 +35,7 @@ function Main() {
   return (
     <>
       <Loading show={loading} />
+      <Sort sortlist={sort} sortShow={true} />
       <Header />
       <FilterHeader fillter={filterList} />
       <div className="container">
