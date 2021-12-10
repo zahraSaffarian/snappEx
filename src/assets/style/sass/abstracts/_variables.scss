@@ -134,3 +134,5 @@ $category-h: 84px;
 $product-h: calc(
     100vh - (#{$header-main-h} + #{$header-sub-h} + #{$pagination-h} + #{$filter-h} + #{$category-h} + 5px)
 );
+//--------------------------------
+$product-gutter: 16px;

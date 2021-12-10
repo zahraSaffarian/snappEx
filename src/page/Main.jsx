@@ -12,13 +12,16 @@ function Main() {
   const [categories, setCategoriest] = useState([]);
   const [filterList, setFilterList] = useState([]);
   const [index, setIndex] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const getList = async (page) => {
+    setLoading(true);
     const result = await getListService(page);
     console.log(result.data);
     setList(result.data.product_variations);
     setCategoriest(result.data.categories);
     setFilterList(result.data.meta.filter.results);
+    setLoading(false);
   };
   const pagingHandler = (newIndex) => {
     console.log("pagingHandler" + newIndex);
@@ -29,6 +32,7 @@ function Main() {
   }, [index]);
   return (
     <>
+      <Loading show={loading} />
       <Header />
       <FilterHeader fillter={filterList} />
       <div className="container">

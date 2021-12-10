@@ -3,23 +3,28 @@
     height: $product-h;
     overflow-x: hidden;
     overflow-y: scroll;
+    padding-right: $product-gutter;
     .product-wrapper {
         height: 100%;
-        margin: 0 -16px;
+        margin: 0 (-$product-gutter);
         .product-container {
             background: $panel-box-bg;
             border: $panel-box-border;
             border-bottom: 0px;
             // margin: -1px;
-            padding: 15px;
+            padding: $product-gutter;
             width: 100%;
             height: 100%;
 
             .img-container {
+                $img-height: 100px;
                 text-align: center;
+                min-height: $img-height;
+                font-size: 10px;
+                color: #aaa;
                 img {
                     width: auto;
-                    height: 100px;
+                    height: $img-height;
                     cursor: pointer;
                 }
             }

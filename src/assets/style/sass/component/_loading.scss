@@ -1,5 +1,10 @@
 ﻿.loading-container {
-  background: rgba(255, 255, 255, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.3);
   padding: 15px 0 40px;
   text-align: center;
   @include animate(fadeIn, 0.5s);
