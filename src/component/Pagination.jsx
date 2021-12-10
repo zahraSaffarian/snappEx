@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 
 function Pagination({ onChange }) {
   const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    console.log("---> " + index);
+  const handelClick = (val) => {
+    setIndex((prev) => prev + val);
     onChange(index);
-  }, [index]);
+  };
+
   return (
     <div className="pagination-container center-container">
       <button
         onClick={() => {
-          setIndex((prev) => --prev);
+          handelClick(-1);
         }}
         className="icon-chevron-right btn"
         title="فبلی"
@@ -20,7 +20,7 @@ function Pagination({ onChange }) {
       <button className="btn">{index + 1}</button>
       <button
         onClick={() => {
-          setIndex((prev) => ++prev);
+          handelClick(1);
         }}
         className="icon-chevron-left btn"
         title="بعدی"
