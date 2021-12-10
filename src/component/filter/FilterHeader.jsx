@@ -1,23 +1,29 @@
 import React, { useEffect, useState } from "react";
 
-function FilterHeader({ fillter }) {
+function FilterHeader({ fillter, clickSort }) {
+  const showSortHandel = () => {
+    clickSort();
+  };
   return (
     <div className="filter-container">
       <div className="search col-6">
         <span className="icon-search fa-md" />
       </div>
       <div className="col-6 left-side">
-        <b className="click success-text">
+        <button
+          onClick={showSortHandel}
+          className="btn icon-text-btn success-text"
+        >
           <span className="ml-1 icon-hak">
             <span className="icon-arrow-up icon right" />
             <span className="icon-arrow-down icon left" />
           </span>
           ارزانترین
-        </b>
-        <b className="click">
+        </button>
+        <button className="btn icon-text-btn">
           <span className="icon-sliders fa-md ml-1" />
           فیلتر
-        </b>
+        </button>
       </div>
 
       {/* {fillter.map((item) => (

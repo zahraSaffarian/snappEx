@@ -3,17 +3,19 @@ import FullPage from "../FullPage";
 
 function Sort({ sortlist, sortShow }) {
   const [sortDefault, setSortDefault] = useState();
+  const [showPopUp, setShowPopUp] = useState();
   useEffect(() => {
-    //setSortDefault();
-  }, []);
+    setShowPopUp(sortShow);
+  }, [sortShow]);
+
   const onChangeHandler = (event) => {
     console.log(event.target.value);
+    setSortDefault(event.target.value);
   };
   return (
-    <FullPage titel={"مرتب سازی"}>
+    <FullPage titel={"مرتب سازی"} IsShow={showPopUp}>
       <ul className="list-Form" onChange={onChangeHandler}>
         {sortlist.map((item) => (
-          // <Item key={item.id} item={item} />
           <li key={item.name}>
             <input
               className="redio-style"
@@ -30,7 +32,14 @@ function Sort({ sortlist, sortShow }) {
         ))}
       </ul>
       <div className="footer">
-        <button className="btn btn-outline-dark">حذف همه</button>
+        <button
+          onClick={() => {
+            setShowPopUp(false);
+          }}
+          className="btn btn-outline-dark"
+        >
+          حذف همه
+        </button>
         <button className="btn btn-gray">اعمال</button>
       </div>
     </FullPage>

@@ -14,7 +14,7 @@ function Main() {
   const [index, setIndex] = useState(0);
   const [loading, setLoading] = useState(false);
   const [sort, setSort] = useState([]);
-
+  const [isSortShow, setIsSortShow] = useState(false);
   const getList = async (page) => {
     setLoading(true);
     const result = await getListService(page);
@@ -35,9 +35,14 @@ function Main() {
   return (
     <>
       <Loading show={loading} />
-      <Sort sortlist={sort} sortShow={true} />
+      <Sort sortlist={sort} sortShow={isSortShow} />
       <Header />
-      <FilterHeader fillter={filterList} />
+      <FilterHeader
+        clickSort={() => {
+          setIsSortShow(true);
+        }}
+        fillter={filterList}
+      />
       <div className="container">
         <div className="row">
           <CategoryList categories={categories} />

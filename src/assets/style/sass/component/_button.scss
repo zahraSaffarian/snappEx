@@ -94,4 +94,11 @@ $btn-color: (
       background-color: rgba($gray-lighten, 0.3);
     }
   }
+  &.icon-text-btn {
+    flex-direction: row;
+    transition: background-color 0.5s ease;
+    &:hover {
+      background-color: rgba($gray-lighten, 0.3);
+    }
+  }
 }
