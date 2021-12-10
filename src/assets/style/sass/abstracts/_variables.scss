@@ -139,6 +139,7 @@ $product-h: calc(
 );
 $full-page-footer-h: 80px;
 $full-page-footer-btn-h: 48px;
+$full-page-body-h: calc(100vh - (#{$header-main-h} + #{$header-sub-h} + #{$full-page-footer-h} + 5px));
 //--------------------------------
 $product-gutter: 16px;
 //-------------------------

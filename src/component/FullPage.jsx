@@ -7,8 +7,7 @@ function FullPage({ children, titel }) {
         <div className="titel">{titel}</div>
         <button className="btn icon-btn-hover icon-x click fa-lg base-text" />
       </div>
-      <div className="body"></div>
-      {children}
+      <div className="body">{children}</div>
     </div>
   );
 }

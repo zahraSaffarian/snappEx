@@ -23,19 +23,20 @@
         }
     }
     .body {
-        margin-bottom: $full-page-footer-h;
         overflow-x: hidden;
-        overflow-y: scroll;
+        overflow-y: auto;
         @include scroll(5px, $gray, $gray);
         position: relative;
+        height: $full-page-body-h;
     }
     .footer {
+        background-color: $default-bg;
         height: $full-page-footer-h;
-        position: absolute;
+        position: fixed;
         bottom: 0;
         display: flex;
         flex-direction: row;
-        align-items: stretch;
+        align-items: center;
         justify-content: space-between;
         width: 100%;
         .btn {
