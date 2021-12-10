@@ -25,7 +25,6 @@ function Main() {
     <>
       <Header />
       <FilterHeader fillter={filterList} />
-
       <div className="container">
         <div>
           <CategoryList categories={categories} />

@@ -39,8 +39,20 @@ i {
 .container {
   max-width: auto !important;
   width: 100% !important;
+  // @include media-max($container-large-desktop) {
+  //   max-width: 100% !important;
+  // }
+  // @include media-max($container-desktop) {
+  //   max-width: 100% !important;
+  // }
+  @include media-max($container-large-tablet) {
+    max-width: 100% !important;
+  }
   @include media-max($container-tablet) {
-    max-width: auto !important;
+    max-width: 100% !important;
+  }
+  @include media-max($container-sm) {
+    max-width: 100% !important;
   }
 }
 

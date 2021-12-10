@@ -1,2 +1,27 @@
 .filter-container {
+    height: 4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $default-bg;
+    border: $panel-box-border;
+    padding: $border-radius-default;
+    .col-6 {
+        flex-grow: 1;
+    }
+    .left-side {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .icon-hak {
+        .icon {
+            font-size: 13px;
+            &.right {
+                margin-right: -4px;
+            }
+        }
+    }
 }
