@@ -3,7 +3,7 @@ import Item from "./Item";
 
 function CategoryList({ categories }) {
   return (
-    <div className="category-container py-2">
+    <div className="category-container">
       {categories.map((item) => (
         <Item key={item.id} item={item} />
       ))}

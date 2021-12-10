@@ -32,11 +32,12 @@ function Main() {
       <Header />
       <FilterHeader fillter={filterList} />
       <div className="container">
-        <CategoryList categories={categories} />
+        <div className="row">
+          <CategoryList categories={categories} />
 
-        <ProductList list={list} />
-        <Pagination onChange={pagingHandler} />
-        <div></div>
+          <ProductList list={list} />
+          <Pagination onChange={pagingHandler} />
+        </div>
       </div>
     </>
   );

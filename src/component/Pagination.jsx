@@ -13,7 +13,7 @@ function Pagination({ onChange }) {
         onClick={() => {
           handelClick(-1);
         }}
-        className="icon-chevron-right btn"
+        className="icon-chevron-right fa-lg btn"
         title="فبلی"
         disabled={index < 1}
       ></button>
@@ -22,7 +22,7 @@ function Pagination({ onChange }) {
         onClick={() => {
           handelClick(1);
         }}
-        className="icon-chevron-left btn"
+        className="icon-chevron-left fa-lg btn"
         title="بعدی"
       ></button>
     </div>

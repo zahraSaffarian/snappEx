@@ -1,3 +1,9 @@
 ﻿.pagination-container {
     border-top: $panel-box-border;
+    color: $gray-text;
+    height: $pagination-h;
+    width: 100%;
+    .btn {
+        color: $gray;
+    }
 }

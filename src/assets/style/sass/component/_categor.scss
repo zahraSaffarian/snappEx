@@ -4,7 +4,8 @@
     justify-content: flex-start;
     align-items: center;
     overflow-x: auto;
-    cursor: grab;
+    height: $category-h;
+    @include scroll(5px, $gray, $gray);
     .item-container {
         $h: 52px;
         height: $h;

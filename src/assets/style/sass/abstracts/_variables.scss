@@ -124,3 +124,13 @@ $btn-height: 31px;
 //------------------------link-------------------------------
 $link-color: $brand-success;
 $link-hover-color: $gray-base;
+
+//------------h--------------
+$header-main-h: 60px;
+$header-sub-h: 48px;
+$pagination-h: 40px;
+$filter-h: 64px;
+$category-h: 84px;
+$product-h: calc(
+    100vh - (#{$header-main-h} + #{$header-sub-h} + #{$pagination-h} + #{$filter-h} + #{$category-h} + 5px)
+);
